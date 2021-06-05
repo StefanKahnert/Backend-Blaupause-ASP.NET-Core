@@ -1,0 +1,7 @@
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend Blaupause Unit Test.csproj.AssemblyReference.cache
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause_Unit_Test.Properties.Resources.resources
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend Blaupause Unit Test.csproj.GenerateResource.cache
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend Blaupause Unit Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend Blaupause Unit Test.AssemblyInfoInputs.cache
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend Blaupause Unit Test.AssemblyInfo.cs
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend Blaupause Unit Test.csproj.CoreCompileInputs.cache

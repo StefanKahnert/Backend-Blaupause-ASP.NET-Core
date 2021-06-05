@@ -1,0 +1,37 @@
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Datac24 Online
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\appsettings.Development.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\appsettings.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Datac24 Online.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Datac24 Online.deps.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Datac24 Online.runtimeconfig.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Datac24 Online.pdb
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.Extensions.Identity.Core.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.Extensions.Identity.Stores.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Newtonsoft.Json.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Npgsql.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Serilog.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Serilog.Extensions.Logging.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Serilog.Extensions.Logging.File.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Serilog.Formatting.Compact.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Serilog.Sinks.Async.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Serilog.Sinks.File.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\Serilog.Sinks.RollingFile.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\System.Data.SqlClient.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Release\net5.0\linux-x64\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll

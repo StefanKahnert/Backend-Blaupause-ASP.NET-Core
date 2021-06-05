@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend_Blaupause", "Backend Blaupause\Backend_Blaupause.csproj", "{6FC38B11-CBDE-433C-83B8-9A90DB5DA302}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{016EFDB2-F9CD-4B53-8A2B-237B5A7144F2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend_Blaupause Unit Test", "Backend Blaupause Unit Test\Backend_Blaupause Unit Test.csproj", "{B31370FD-361E-4E40-B798-D596E2F39EA9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6FC38B11-CBDE-433C-83B8-9A90DB5DA302} = {6FC38B11-CBDE-433C-83B8-9A90DB5DA302}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FC38B11-CBDE-433C-83B8-9A90DB5DA302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC38B11-CBDE-433C-83B8-9A90DB5DA302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC38B11-CBDE-433C-83B8-9A90DB5DA302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC38B11-CBDE-433C-83B8-9A90DB5DA302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31370FD-361E-4E40-B798-D596E2F39EA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31370FD-361E-4E40-B798-D596E2F39EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31370FD-361E-4E40-B798-D596E2F39EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31370FD-361E-4E40-B798-D596E2F39EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {295EF5F4-4AF5-44BA-AAC8-FF38A4F42647}
+	EndGlobalSection
+EndGlobal

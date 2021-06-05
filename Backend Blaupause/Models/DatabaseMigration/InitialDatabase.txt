@@ -1,0 +1,101 @@
+
+CREATE TABLE public.permission (
+    id bigint NOT NULL,
+    name text
+);
+
+
+ALTER TABLE public.permission OWNER TO postgres;
+
+
+CREATE TABLE public."user" (
+    id bigint NOT NULL,
+    supervisor_id bigint,
+    username text NOT NULL,
+    first_name text NOT NULL,
+    last_name text NOT NULL,
+    email text,
+    last_login time without time zone,
+    password text NOT NULL,
+    password_question text,
+    active boolean,
+    hidden boolean,
+    created_at timestamp without time zone,
+    created_by bigint,
+    expiration_date timestamp without time zone,
+    modified_at timestamp without time zone,
+    modified_by bigint,
+    id_adress bigint
+);
+
+
+ALTER TABLE public."user" OWNER TO postgres;
+
+
+
+
+CREATE TABLE public.user_permission (
+    id_user bigint NOT NULL,
+    id_permission bigint NOT NULL
+);
+
+
+ALTER TABLE public.user_permission OWNER TO postgres;
+
+
+CREATE VIEW public.user_permissions AS
+ SELECT u.id AS userid,
+    u.username,
+    p.name AS "Permission"
+   FROM ((public."user" u
+     JOIN public.user_permission up ON ((up.id_user = u.id)))
+     JOIN public.permission p ON ((up.id_permission = p.id)));
+
+
+ALTER TABLE public.user_permissions OWNER TO postgres;
+
+
+CREATE SEQUENCE public.user_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_seq OWNER TO postgres;
+
+
+
+ALTER TABLE ONLY public."user"
+    ADD CONSTRAINT "User_pkey" PRIMARY KEY (id);
+
+
+
+ALTER TABLE ONLY public.permission
+    ADD CONSTRAINT role_pkey PRIMARY KEY (id);
+
+
+
+
+ALTER TABLE ONLY public.user_permission
+    ADD CONSTRAINT fk_permission FOREIGN KEY (id_permission) REFERENCES public.permission(id);
+
+
+ALTER TABLE ONLY public.user_permission
+    ADD CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES public."user"(id);
+
+
+CREATE TABLE public.database_version (
+    version bigint
+);
+
+ALTER TABLE public.database_version
+    OWNER to postgres;
+
+INSERT INTO public.database_version(version) VALUES (0);
+
+
+
+
+

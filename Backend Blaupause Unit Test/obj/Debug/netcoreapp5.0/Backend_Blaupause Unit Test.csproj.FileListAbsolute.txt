@@ -1,0 +1,147 @@
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.csproj.AssemblyReference.cache
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause_Unit_Test.Properties.Resources.resources
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.csproj.GenerateResource.cache
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.AssemblyInfoInputs.cache
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.AssemblyInfo.cs
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.csproj.CoreCompileInputs.cache
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\appsettings.Development.json
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\testhost.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause.deps.json
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause.runtimeconfig.json
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause.runtimeconfig.dev.json
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\appsettings.json
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause.exe
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\testhost.exe
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.deps.json
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.runtimeconfig.json
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.runtimeconfig.dev.json
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ref\Backend_Blaupause Unit Test.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.pdb
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Castle.Core.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.EntityFrameworkCore.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.IdentityModel.Logging.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.TestPlatform.CoreUtilities.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.TestPlatform.PlatformAbstractions.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.TestPlatform.CommunicationUtilities.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.TestPlatform.CrossPlatEngine.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.TestPlatform.Utilities.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.VisualStudio.TestPlatform.Common.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Moq.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Newtonsoft.Json.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Newtonsoft.Json.Bson.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Npgsql.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\NuGet.Frameworks.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Serilog.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Serilog.Extensions.Logging.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Serilog.Extensions.Logging.File.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Serilog.Formatting.Compact.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Serilog.Sinks.Async.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Serilog.Sinks.File.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Serilog.Sinks.RollingFile.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\System.Data.SqlClient.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\cs\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\cs\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\cs\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\de\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\de\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\de\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\es\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\es\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\es\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\fr\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\fr\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\fr\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\it\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\it\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\it\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ja\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ja\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ja\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ko\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ko\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ko\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pl\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pl\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pl\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pt-BR\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pt-BR\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\pt-BR\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ru\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ru\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\ru\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\tr\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\tr\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\tr\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hans\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hans\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hans\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\runtimes\win-arm64\native\sni.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\runtimes\win-x64\native\sni.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\runtimes\win-x86\native\sni.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\bin\Debug\netcoreapp5.0\Backend_Blaupause.pdb
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.csproj.CopyComplete
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\ref\Backend_Blaupause Unit Test.dll
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.pdb
+C:\Entwicklung\C# Backend Blaupause\Datac24 Online Unit Test\obj\Debug\netcoreapp5.0\Backend_Blaupause Unit Test.genruntimeconfig.cache

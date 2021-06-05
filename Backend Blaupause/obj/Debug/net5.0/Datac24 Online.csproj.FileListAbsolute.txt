@@ -1,0 +1,64 @@
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.GeneratedMSBuildEditorConfig.editorconfig
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.AssemblyInfoInputs.cache
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.AssemblyInfo.cs
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.csproj.CoreCompileInputs.cache
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.MvcApplicationPartsAssemblyInfo.cache
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\appsettings.Development.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\appsettings.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Datac24 Online.exe
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Datac24 Online.deps.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Datac24 Online.runtimeconfig.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Datac24 Online.runtimeconfig.dev.json
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Datac24 Online.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\ref\Datac24 Online.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Datac24 Online.pdb
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Npgsql.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\staticwebassets\Datac24 Online.StaticWebAssets.Manifest.cache
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\staticwebassets\Datac24 Online.StaticWebAssets.xml
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\scopedcss\bundle\Datac24 Online.styles.css
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.RazorTargetAssemblyInfo.cache
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.csproj.CopyComplete
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\ref\Datac24 Online.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.pdb
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.genruntimeconfig.cache
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24_Online.Properties.Resources.resources
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.csproj.GenerateResource.cache
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Serilog.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Serilog.Extensions.Logging.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Serilog.Extensions.Logging.File.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Serilog.Formatting.Compact.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Serilog.Sinks.Async.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Serilog.Sinks.File.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Serilog.Sinks.RollingFile.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\obj\Debug\net5.0\Datac24 Online.csprojAssemblyReference.cache
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Entwicklung\Datac24 Online\Datac24 Online\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
