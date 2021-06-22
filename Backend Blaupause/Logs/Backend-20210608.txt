@@ -1,0 +1,5 @@
+2021-06-08T19:29:59.5908382+02:00  [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results. (f43d926b)
+2021-06-08T19:30:00.3051233+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-06-08T19:30:00.3056488+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-06-08T19:30:00.3056995+02:00  [INF] Content root path: "C:\Entwicklung\C# Backend Blaupause\Backend Blaupause" (b5d60022)
+2021-06-08T19:30:14.2550304+02:00 80000022-0006-ff00-b63f-84710c7967bb [INF] User: ADMIN has successully logged in. (70cf601e)

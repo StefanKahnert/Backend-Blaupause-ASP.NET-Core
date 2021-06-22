@@ -1,0 +1,144 @@
+2021-06-10T18:14:57.9120048+02:00  [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results. (f43d926b)
+2021-06-10T18:14:58.5013943+02:00  [ERR] Failed executing DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT d.version
+FROM database_version AS d
+LIMIT 1" (627a98df)
+2021-06-10T18:14:58.5646019+02:00  [ERR] An exception occurred while iterating over the results of a query for context type '"Backend_Blaupause.Models.DatabaseContext"'."
+""Npgsql.PostgresException (0x80004005): 42P01: Relation »database_version« existiert nicht
+   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|194_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: FEHLER
+    SqlState: 42P01
+    MessageText: Relation »database_version« existiert nicht
+    Position: 24
+    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\parser\parse_relation.c
+    Line: 1376
+    Routine: parserOpenTable" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42P01: Relation »database_version« existiert nicht
+   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|194_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at Backend_Blaupause.Models.DatabaseMigration.DatabaseMigrationService.updateDatabaseToCurrentVersion() in C:\Entwicklung\C# Backend Blaupause\Datac24 Online\Models\DatabaseMigration\DatabaseMigrationService.cs:line 42
+  Exception data:
+    Severity: FEHLER
+    SqlState: 42P01
+    MessageText: Relation »database_version« existiert nicht
+    Position: 24
+    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\parser\parse_relation.c
+    Line: 1376
+    Routine: parserOpenTable
+2021-06-10T18:14:58.6909677+02:00  [ERR] Failed executing DbCommand ("37"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE public.permission (    id bigint NOT NULL,    name text);ALTER TABLE public.permission OWNER TO postgres;CREATE TABLE public.\"user\" (    id bigint NOT NULL,    supervisor_id bigint,    username text NOT NULL,    first_name text NOT NULL,    last_name text NOT NULL,    email text,    last_login time without time zone,    password text NOT NULL,    password_question text,    active boolean,    hidden boolean,    created_at timestamp without time zone,    created_by bigint,    expiration_date timestamp without time zone,    modified_at timestamp without time zone,    modified_by bigint,    id_adress bigint);ALTER TABLE public.\"user\" OWNER TO postgres;CREATE TABLE public.user_permission (    id_user bigint NOT NULL,    id_permission bigint NOT NULL);ALTER TABLE public.user_permission OWNER TO postgres;CREATE VIEW public.user_permissions AS SELECT u.id AS userid,    u.username,    p.name AS \"Permission\"   FROM ((public.\"user\" u     JOIN public.user_permission up ON ((up.id_user = u.id)))     JOIN public.permission p ON ((up.id_permission = p.id)));ALTER TABLE public.user_permissions OWNER TO postgres;CREATE SEQUENCE public.user_seq    START WITH 1    INCREMENT BY 1    NO MINVALUE    NO MAXVALUE    CACHE 1;ALTER TABLE public.user_seq OWNER TO postgres;ALTER TABLE ONLY public.\"user\"    ADD CONSTRAINT \"User_pkey\" PRIMARY KEY (id);ALTER TABLE ONLY public.permission    ADD CONSTRAINT role_pkey PRIMARY KEY (id);ALTER TABLE ONLY public.user_permission    ADD CONSTRAINT fk_permission FOREIGN KEY (id_permission) REFERENCES public.permission(id);ALTER TABLE ONLY public.user_permission    ADD CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES public.\"user\"(id);CREATE TABLE public.database_version (    version bigint);ALTER TABLE public.database_version    OWNER to postgres;INSERT INTO public.database_version(version) VALUES (0); INSERT INTO permission(id, name) VALUES(1, 'ADMINISTRATOR'); INSERT INTO permission(id, name) VALUES(2, 'USER'); INSERT INTO \"user\" (id, username, first_name, last_name, password, active, hidden) VALUES(1, 'ADMIN', 'SYS', 'ADMIN', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', true, false );" (627a98df)
+2021-06-10T18:15:14.4875112+02:00  [FTL] Application startup exception (6c57a5ba)
+Npgsql.PostgresException (0x80004005): 42P07: Relation »user_seq« existiert bereits
+   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|194_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteNonQuery(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteNonQuery()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQuery(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlRaw(DatabaseFacade databaseFacade, String sql, IEnumerable`1 parameters)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlRaw(DatabaseFacade databaseFacade, String sql, Object[] parameters)
+   at Backend_Blaupause.Models.DatabaseMigration.DatabaseMigrationService.updateDatabaseToCurrentVersion() in C:\Entwicklung\C# Backend Blaupause\Datac24 Online\Models\DatabaseMigration\DatabaseMigrationService.cs:line 60
+   at Backend_Blaupause.Startup.Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, DatabaseMigrationService databaseMigrationService) in C:\Entwicklung\C# Backend Blaupause\Datac24 Online\Startup.cs:line 105
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.Invoke(Object instance, IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.ConfigureBuilder.<>c__DisplayClass4_0.<Build>b__0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostBuilder.<>c__DisplayClass15_0.<UseStartup>b__1(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Mvc.Filters.MiddlewareFilterBuilderStartupFilter.<>c__DisplayClass0_0.<Configure>g__MiddlewareFilterBuilder|0(IApplicationBuilder builder)
+   at Microsoft.AspNetCore.Server.IIS.Core.IISServerSetupFilter.<>c__DisplayClass2_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+  Exception data:
+    Severity: FEHLER
+    SqlState: 42P07
+    MessageText: Relation »user_seq« existiert bereits
+    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\catalog\heap.c
+    Line: 1164
+    Routine: heap_create_with_catalog
+2021-06-10T18:15:56.9467388+02:00  [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results. (f43d926b)
+2021-06-10T18:15:57.4822592+02:00  [ERR] Failed executing DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT d.version
+FROM database_version AS d
+LIMIT 1" (627a98df)
+2021-06-10T18:15:57.5224295+02:00  [ERR] An exception occurred while iterating over the results of a query for context type '"Backend_Blaupause.Models.DatabaseContext"'."
+""Npgsql.PostgresException (0x80004005): 42P01: Relation »database_version« existiert nicht
+   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|194_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: FEHLER
+    SqlState: 42P01
+    MessageText: Relation »database_version« existiert nicht
+    Position: 24
+    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\parser\parse_relation.c
+    Line: 1376
+    Routine: parserOpenTable" (f5c7ac34)
+Npgsql.PostgresException (0x80004005): 42P01: Relation »database_version« existiert nicht
+   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|194_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at Backend_Blaupause.Models.DatabaseMigration.DatabaseMigrationService.updateDatabaseToCurrentVersion() in C:\Entwicklung\C# Backend Blaupause\Datac24 Online\Models\DatabaseMigration\DatabaseMigrationService.cs:line 42
+  Exception data:
+    Severity: FEHLER
+    SqlState: 42P01
+    MessageText: Relation »database_version« existiert nicht
+    Position: 24
+    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\parser\parse_relation.c
+    Line: 1376
+    Routine: parserOpenTable
+2021-06-10T18:15:57.7610863+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-06-10T18:15:57.7663499+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-06-10T18:15:57.7664359+02:00  [INF] Content root path: "C:\Entwicklung\C# Backend Blaupause\Backend Blaupause" (b5d60022)
+2021-06-10T18:15:58.2622051+02:00 80000002-0007-ff00-b63f-84710c7967bb [INF] User: ADMIN has successully logged in. (70cf601e)
