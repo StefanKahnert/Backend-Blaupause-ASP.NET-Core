@@ -49,7 +49,7 @@ namespace Backend_Blaupause.Helper.ExceptionHandling
             else
             {
                 status = HttpStatusCode.InternalServerError;
-                message = exception.Message;
+                message = "";
                 logger.LogError(exception.Message + "\r\n" + exception.StackTrace);
 
             }
