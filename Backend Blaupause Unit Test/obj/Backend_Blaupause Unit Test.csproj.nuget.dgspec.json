@@ -1,38 +1,42 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause Unit Test\\Backend_Blaupause Unit Test.csproj": {}
+    "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause Unit Test\\Backend_Blaupause Unit Test.csproj": {}
   },
   "projects": {
-    "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause Unit Test\\Backend_Blaupause Unit Test.csproj": {
+    "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause Unit Test\\Backend_Blaupause Unit Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause Unit Test\\Backend_Blaupause Unit Test.csproj",
+        "projectUniqueName": "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause Unit Test\\Backend_Blaupause Unit Test.csproj",
         "projectName": "Backend_Blaupause Unit Test",
-        "projectPath": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause Unit Test\\Backend_Blaupause Unit Test.csproj",
-        "packagesPath": "C:\\Users\\skahn\\.nuget\\packages\\",
-        "outputPath": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause Unit Test\\obj\\",
+        "projectPath": "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause Unit Test\\Backend_Blaupause Unit Test.csproj",
+        "packagesPath": "C:\\Users\\sk\\.nuget\\packages\\",
+        "outputPath": "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause Unit Test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\skahn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "netcoreapp5.0",
             "projectReferences": {
-              "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj": {
-                "projectPath": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj"
+              "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj": {
+                "projectPath": "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj"
               }
             }
           }
@@ -79,6 +83,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -87,27 +94,31 @@
         }
       }
     },
-    "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj": {
+    "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj",
+        "projectUniqueName": "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj",
         "projectName": "Backend_Blaupause",
-        "projectPath": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj",
-        "packagesPath": "C:\\Users\\skahn\\.nuget\\packages\\",
-        "outputPath": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\obj\\",
+        "projectPath": "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj",
+        "packagesPath": "C:\\Users\\sk\\.nuget\\packages\\",
+        "outputPath": "C:\\Entwicklung\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\skahn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
