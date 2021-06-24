@@ -1,4 +1,5 @@
 ﻿using Backend_Blaupause.Helper;
+using Backend_Blaupause.Helper.ExceptionHandling;
 using Backend_Blaupause.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -43,16 +45,27 @@ namespace Backend_Blaupause.Controllers
 
             User user = iUser.getUserByName(credentials.Login);
 
+
             if (user == null || user.password != password || user.username != credentials.Login)
             {
                 string username = user == null ? "unknown" : user.username;
                 logger.LogInformation("User: " + username + " has failed to login.");
                 Response.StatusCode = StatusCodes.Status401Unauthorized;
                 return new AccessToken { Success = false };
-            } else
-            {
-                logger.LogInformation("User: " + user.username + " has successully logged in.");
             }
+
+            string tokenString = user.token.Replace("Bearer ", "");
+            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+            DateTime tokenExpiryDate = (handler.ReadToken(tokenString) as JwtSecurityToken).ValidTo;
+
+            //No Force Login and Token not expired
+            if (!credentials.forceLogin && tokenExpiryDate > DateTime.Now)
+            {
+                throw new HttpException(HttpStatusCode.Conflict, "There is already a login session!");
+            }
+
+            logger.LogInformation("User: " + user.username + " has successully logged in.");
+
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.id.ToString()),
@@ -70,14 +83,20 @@ namespace Backend_Blaupause.Controllers
                   signingCredentials: creds);
 
 
+            string tokenHash = new JwtSecurityTokenHandler().WriteToken(token);
+
+            user.token = "Bearer " + tokenHash;
+
+            iUser.UpdateUserRecord(user);
+
             return new AccessToken
             {
                 ExpireOnDate = token.ValidTo,
                 Success = true,
                 ExpiryIn = configuration.TokenExpirationTime,
-                Token = new JwtSecurityTokenHandler().WriteToken(token)
+                Token = tokenHash
             };
-        }
+    }
 
     }
 }

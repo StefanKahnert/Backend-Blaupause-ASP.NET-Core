@@ -162,5 +162,12 @@ namespace Backend_Blaupause.Helper
             }
         }
 
+        public void checkToken(string token)
+        {
+            if (iUser.GetUserSingleRecord(GetUserId()).token != token)
+            {
+                throw new HttpException(HttpStatusCode.Unauthorized, "");
+            }
+        }
     }
 }

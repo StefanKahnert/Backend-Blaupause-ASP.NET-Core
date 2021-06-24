@@ -43,8 +43,6 @@ namespace Backend_Blaupause.Controllers
         [HttpGet, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
         public IEnumerable<User> Get()
         {
-
-            throw new HttpException(HttpStatusCode.Forbidden, "Nicht erlaubt");
             return iUser.GetUserRecords().ToList();
         }
 
