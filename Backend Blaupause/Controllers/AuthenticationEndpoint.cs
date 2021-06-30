@@ -54,15 +54,18 @@ namespace Backend_Blaupause.Controllers
                 return new AccessToken { Success = false };
             }
 
-            string tokenString = user.token.Replace("Bearer ", "");
-            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
-            DateTime tokenExpiryDate = (handler.ReadToken(tokenString) as JwtSecurityToken).ValidTo;
-
-            //No Force Login and Token not expired
-            if (!credentials.forceLogin && tokenExpiryDate > DateTime.Now)
+            if (user.token != "")
             {
-                throw new HttpException(HttpStatusCode.Conflict, "There is already a login session!");
-            }
+				string tokenString = user.token.Replace("Bearer ", "");
+				JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+				DateTime tokenExpiryDate = (handler.ReadToken(tokenString) as JwtSecurityToken).ValidTo;
+
+				//No Force Login and Token not expired
+				if (!credentials.forceLogin && tokenExpiryDate > DateTime.Now)
+				{
+					throw new HttpException(HttpStatusCode.Conflict, "There is already a login session!");
+				}
+			}
 
             logger.LogInformation("User: " + user.username + " has successully logged in.");
 
