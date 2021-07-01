@@ -69,6 +69,41 @@ namespace Backend_Blaupause
             ConfigureJwt(services);
 
             services.AddSignalR();
+
+            Assembly asm = Assembly.GetExecutingAssembly();
+
+            List<MethodInfo> jobs = asm.GetTypes()
+                .SelectMany(type => type.GetMethods())
+                .Where(method => method.IsPublic && method.IsDefined(typeof(ScheduleAttribute))).ToList();
+
+            #pragma warning disable ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
+            ServiceProvider provider = services.BuildServiceProvider();
+            #pragma warning restore ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
+
+            jobs.ForEach(job =>
+            {
+                if (job.IsDefined(typeof(ScheduleSecondAttribute)))
+                {
+                    ScheduleSecondAttribute attribute = (ScheduleSecondAttribute)job.GetCustomAttribute(typeof(ScheduleSecondAttribute));
+                    Scheduler.Interval(attribute.day, attribute.hour, attribute.min, attribute.interval, Scheduler.SECONDS, (Action)Delegate.CreateDelegate(typeof(Action), provider.GetService<ScheduleJobs>(), job));
+                }
+                else if (job.IsDefined(typeof(ScheduleMinuteAttribute)))
+                {
+                    ScheduleMinuteAttribute attribute = (ScheduleMinuteAttribute)job.GetCustomAttribute(typeof(ScheduleMinuteAttribute));
+                    Scheduler.Interval(attribute.day, attribute.hour, attribute.min, attribute.interval, Scheduler.MINUTES, (Action)Delegate.CreateDelegate(typeof(Action), provider.GetService<ScheduleJobs>(), job));
+                }
+                else if (job.IsDefined(typeof(ScheduleHourAttribute)))
+                {
+                    ScheduleHourAttribute attribute = (ScheduleHourAttribute)job.GetCustomAttribute(typeof(ScheduleHourAttribute));
+                    Scheduler.Interval(attribute.day, attribute.hour, attribute.min, attribute.interval, Scheduler.HOURS, (Action)Delegate.CreateDelegate(typeof(Action), provider.GetService<ScheduleJobs>(), job));
+                }
+                else if (job.IsDefined(typeof(ScheduleDayAttribute)))
+                {
+                    ScheduleDayAttribute attribute = (ScheduleDayAttribute)job.GetCustomAttribute(typeof(ScheduleDayAttribute));
+                    Scheduler.Interval(attribute.day, attribute.hour, attribute.min, attribute.interval, Scheduler.HOURS, (Action)Delegate.CreateDelegate(typeof(Action), provider.GetService<ScheduleJobs>(), job));
+                }
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

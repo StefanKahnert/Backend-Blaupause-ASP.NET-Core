@@ -8,7 +8,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Datac24_Online.Helper
+namespace Backend_Blaupause.Helper
 {
     public class MailService
     {

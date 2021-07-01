@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Backend_Blaupause.Helper;
 using Backend_Blaupause.Helper.ExceptionHandling;
 
-namespace Datac24_Online.Helper
+namespace Backend_Blaupause.Helper
 {
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class AuthorizeSingleUser : TypeFilterAttribute
