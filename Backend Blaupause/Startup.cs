@@ -1,5 +1,6 @@
 using Backend_Blaupause.Helper;
 using Backend_Blaupause.Helper.ExceptionHandling;
+using Backend_Blaupause.Helper.Schedule;
 using Backend_Blaupause.Models;
 using Backend_Blaupause.Models.DatabaseMigration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,6 +16,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Backend_Blaupause
@@ -73,6 +77,7 @@ namespace Backend_Blaupause
             Assembly asm = Assembly.GetExecutingAssembly();
 
             List<MethodInfo> jobs = asm.GetTypes()
+                .Where(job => job.IsInstanceOfType(typeof(ScheduleJobs)))
                 .SelectMany(type => type.GetMethods())
                 .Where(method => method.IsPublic && method.IsDefined(typeof(ScheduleAttribute))).ToList();
 
