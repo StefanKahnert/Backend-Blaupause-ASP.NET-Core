@@ -56,7 +56,7 @@ namespace Backend_Blaupause.Helper
             Arguments = new object[] { permissions, modules };
         }
 
-        private class PermissionFilter : IResultFilter
+        private class PermissionFilter : IActionFilter
         {
             private readonly UserAuthentication userAuthentication;
 
@@ -92,11 +92,11 @@ namespace Backend_Blaupause.Helper
                 this.modules = modules;
             }
 
-            public void OnResultExecuted(ResultExecutedContext context)
+            public void OnActionExecuted(ActionExecutedContext context)
             {
             }
 
-            public void OnResultExecuting(ResultExecutingContext context)
+            public void OnActionExecuting(ActionExecutingContext context)
             {
                 if(this.permission != null && this.module != null)
                 {

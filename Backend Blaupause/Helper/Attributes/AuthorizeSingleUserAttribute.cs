@@ -24,7 +24,7 @@ namespace Backend_Blaupause.Helper
         }
 
 
-        private class AuthorizeSingleUserFilter : IResultFilter
+        private class AuthorizeSingleUserFilter : IActionFilter
         {
             private readonly UserAuthentication userAuthentication;
 
@@ -33,11 +33,11 @@ namespace Backend_Blaupause.Helper
                 this.userAuthentication = userAuthentication;
             }
 
-            public void OnResultExecuted(ResultExecutedContext context)
+            public void OnActionExecuted(ActionExecutedContext context)
             {
             }
 
-            public void OnResultExecuting(ResultExecutingContext context)
+            public void OnActionExecuting(ActionExecutingContext context)
             {
                 try
                 {
