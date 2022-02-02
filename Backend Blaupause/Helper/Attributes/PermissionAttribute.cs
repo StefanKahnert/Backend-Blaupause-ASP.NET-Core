@@ -56,7 +56,7 @@ namespace Backend_Blaupause.Helper
             Arguments = new object[] { permissions, modules };
         }
 
-        private class PermissionFilter : IAsyncResultFilter
+        public sealed class PermissionFilter : IAsyncActionFilter
         {
             private readonly UserAuthentication userAuthentication;
 
@@ -92,7 +92,7 @@ namespace Backend_Blaupause.Helper
                 this.modules = modules;
             }
 
-            public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+            public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
             {
                 if (this.permission != null && this.module != null)
                 {
@@ -125,6 +125,7 @@ namespace Backend_Blaupause.Helper
 
                 await next();
             }
+
         }
 
     }

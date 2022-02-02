@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Backend_Blaupause.Models.Interfaces
 {
-    interface IPermission
+    public interface IPermission
     {
         public const string ADMINISTRATOR = "Administrator";
         public const string USER = "User";

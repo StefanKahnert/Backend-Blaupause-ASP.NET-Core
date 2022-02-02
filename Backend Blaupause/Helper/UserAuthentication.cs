@@ -70,7 +70,7 @@ namespace Backend_Blaupause.Helper
         /// <param name="permission"></param>
         /// <param name="user"></param>
         /// <returns></returns>
-        private bool userHasPermission(string permission, User user)
+        public bool userHasPermission(string permission, User user)
         {
             if (permission == IPermission.NONE || user.userPermissions.Any(up => up.permission.name.Equals(IPermission.ADMINISTRATOR)))
             {

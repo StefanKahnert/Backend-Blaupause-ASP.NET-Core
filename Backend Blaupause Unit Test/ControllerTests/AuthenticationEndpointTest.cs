@@ -1,12 +1,11 @@
 using Backend_Blaupause.Controllers;
 using Backend_Blaupause.Models;
-using Backend_Blaupause_Unit_Test.Helper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Backend_Blaupause_Unit_Test
 {
@@ -14,7 +13,7 @@ namespace Backend_Blaupause_Unit_Test
     public class AuthenticationEndpointTest
     {
         [TestMethod]
-        public void Login()
+        public async Task Login()
         {
             //1. Mock everything you need
             int expirationTime = 20;
@@ -39,14 +38,14 @@ namespace Backend_Blaupause_Unit_Test
             mockUserIdentity.Login = "user";
 
             var mockIUser = new Mock<IUser>();
-            mockIUser.Setup(iUser => iUser.getUserByName(mockUserIdentity.Login)).Returns(mockUser);
+            mockIUser.Setup(iUser => iUser.getUserByName(mockUserIdentity.Login)).Returns(Task.FromResult(mockUser));
 
             var mockResponse = new Mock<HttpResponse>();
 
             var mockLogger = new Mock<ILogger<AuthenticationEndpoint>>();
 
             //2. Execute Tested Unit with right Data
-            mockIUser.Setup(iUser => iUser.getUserByName(mockUserIdentity.Login)).Returns(mockUser);
+            mockIUser.Setup(iUser => iUser.getUserByName(mockUserIdentity.Login)).Returns(Task.FromResult(mockUser));
             AuthenticationEndpoint authenticationEndpoint = new AuthenticationEndpoint(mockIUser.Object, jwtConfiguration, mockLogger.Object)
             {
                 ControllerContext = new Microsoft.AspNetCore.Mvc.ControllerContext()
@@ -55,14 +54,14 @@ namespace Backend_Blaupause_Unit_Test
                 }
             };
 
-            AccessToken token = authenticationEndpoint.generateToken(mockUserIdentity);
+            AccessToken token = await authenticationEndpoint.generateToken(mockUserIdentity);
 
             //3. Check if result is correct
             Assert.AreEqual(token.Success, true);
             Assert.AreEqual(token.ExpiryIn, expirationTime);
 
             //4. Execute Tested Unit with wrong data
-            mockIUser.Setup(iUser => iUser.getUserByName(mockUserIdentity.Login)).Returns(new User());
+            mockIUser.Setup(iUser => iUser.getUserByName(mockUserIdentity.Login)).Returns(Task.FromResult(new User()));
             authenticationEndpoint = new AuthenticationEndpoint(mockIUser.Object, jwtConfiguration, mockLogger.Object)
             {
                 ControllerContext = new Microsoft.AspNetCore.Mvc.ControllerContext()
@@ -70,7 +69,7 @@ namespace Backend_Blaupause_Unit_Test
                     HttpContext = Mock.Of<HttpContext>(_ => _.Response == mockResponse.Object)
                 }
             };
-            token = authenticationEndpoint.generateToken(mockUserIdentity);
+            token = await authenticationEndpoint.generateToken(mockUserIdentity);
 
             //5. Check if result is correct
             Assert.AreNotEqual(token.Success, true);
