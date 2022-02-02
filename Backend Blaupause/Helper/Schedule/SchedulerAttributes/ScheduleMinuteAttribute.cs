@@ -21,7 +21,7 @@ namespace Backend_Blaupause.Helper
 
         public ScheduleMinuteAttribute(DayOfWeek day, int hour, int min, double interval) : base(day, hour, min, interval)
         {
-            this.intervalType = Scheduler.DAYS;
+            this.intervalType = Scheduler.MINUTES;
         }
 
     }

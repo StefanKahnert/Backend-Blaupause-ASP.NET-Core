@@ -33,15 +33,6 @@ namespace Backend_Blaupause.Helper
                 this.userAuthentication = userAuthentication;
             }
 
-            public void OnActionExecuted(ActionExecutedContext context)
-            {
-            }
-
-            public void OnActionExecuting(ActionExecutingContext context)
-            {
-
-            }
-
             public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
             {
                 try
