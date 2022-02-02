@@ -11,13 +11,13 @@ namespace Backend_Blaupause.Models
         public const string NONE = "none";
 
 
-        void AddUserRecord(User user);
-        void UpdateUserRecord(User user);
-        void DeleteUserRecord(long id);
-        User GetUserSingleRecord(long id);
-        User getUserByName(string name);
-        List<User> GetUserRecords();
-        IQueryable<UserDTO> getUserDTO(long id);
+        Task<User> AddUserRecord(User user);
+        Task UpdateUserRecord(User user);
+        Task DeleteUserRecord(long id);
+        Task<User> GetUserSingleRecord(long id);
+        Task<User> getUserByName(string name);
+        Task<List<User>> GetUserRecords();
+        Task<IQueryable<UserDTO>> getUserDTO(long id);
 
     }
 }

@@ -18,37 +18,39 @@ namespace Backend_Blaupause.Models
             db = context;
         }
 
-        public void AddUserRecord(User user)
+        public async Task<User> AddUserRecord(User user)
         {
             user.id = db.getNextUserId();
-            db.user.Add(user);
-            db.SaveChanges();
+            await db.user.AddAsync(user);
+            await db.SaveChangesAsync();
+
+            return user;
         }
 
-        public void UpdateUserRecord(User User)
+        public async Task UpdateUserRecord(User User)
         {
             db.user.Update(User);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
-        public void DeleteUserRecord(long id)
+        public async Task DeleteUserRecord(long id)
         {
-            var entity = db.user.FirstOrDefault(t => t.id == id);
+            var entity = await db.user.FirstOrDefaultAsync(t => t.id == id);
             db.user.Remove(entity);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
 
-        public User GetUserSingleRecord(long id)
+        public async Task<User> GetUserSingleRecord(long id)
         {
-            return db.user.FirstOrDefault(t => t.id == id);
+            return await db.user.FirstOrDefaultAsync(t => t.id == id);
         }
 
-        public List<User> GetUserRecords()
+        public async Task<List<User>> GetUserRecords()
         {
-            return db.user.ToList();
+            return await db.user.ToListAsync();
         }
 
-        public IQueryable<UserDTO> getUserDTO(long id)
+        public async Task<IQueryable<UserDTO>> getUserDTO(long id)
         {
             var userDTO = from u in db.user
                           where u.id == id
@@ -62,9 +64,9 @@ namespace Backend_Blaupause.Models
             return userDTO;
         }
 
-        public User getUserByName(string name)
+        public async Task<User> getUserByName(string name)
         {
-            return db.user.Include(u => u.userPermissions).ThenInclude(ur => ur.permission).FirstOrDefault(t => t.username == name);
+            return await db.user.Include(u => u.userPermissions).ThenInclude(ur => ur.permission).FirstOrDefaultAsync(t => t.username == name);
         }
 
     }

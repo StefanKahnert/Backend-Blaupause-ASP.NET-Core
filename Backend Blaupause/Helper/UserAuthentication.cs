@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
-
+using System.Threading.Tasks;
 
 namespace Backend_Blaupause.Helper
 {
@@ -87,9 +87,9 @@ namespace Backend_Blaupause.Helper
         /// <param name="permission"></param>
         /// <param name="module"></param>
         /// <returns></returns>
-        public bool userHasPermissionAndModule(string permission, string module)
+        public async Task<bool> userHasPermissionAndModule(string permission, string module)
         {
-            User user = iUser.GetUserSingleRecord(GetUserId());
+            User user = await iUser.GetUserSingleRecord(GetUserId());
  
             if (userHasPermission(permission, user) && userHasModule(module, user) )
             {
@@ -105,9 +105,9 @@ namespace Backend_Blaupause.Helper
         /// <param name="permission"></param>
         /// <param name="modules"></param>
         /// <returns></returns>
-        public bool userHasPermissionAndModules(string permission, List<string> modules)
+        public async Task<bool> userHasPermissionAndModules(string permission, List<string> modules)
         {
-            User user = iUser.GetUserSingleRecord(GetUserId());
+            User user = await iUser.GetUserSingleRecord(GetUserId());
 
             if (userHasPermission(permission, user) && modules.Any(module => userHasModule(module, user)))
             {
@@ -123,9 +123,9 @@ namespace Backend_Blaupause.Helper
         /// <param name="permissions"></param>
         /// <param name="module"></param>
         /// <returns></returns>
-        public bool userHasPermissionsAndModule(List<string> permissions, string module)
+        public async Task<bool> userHasPermissionsAndModule(List<string> permissions, string module)
         {
-            User user = iUser.GetUserSingleRecord(GetUserId());
+            User user = await iUser.GetUserSingleRecord(GetUserId());
 
             if (permissions.Any(permission => userHasPermission(permission, user)) && userHasModule(module, user))
             {
@@ -141,9 +141,9 @@ namespace Backend_Blaupause.Helper
         /// <param name="permissions"></param>
         /// <param name="modules"></param>
         /// <returns></returns>
-        public bool userHasPermissionsAndModules(List<string> permissions, List<string> modules)
+        public async Task<bool> userHasPermissionsAndModules(List<string> permissions, List<string> modules)
         {
-            User user = iUser.GetUserSingleRecord(GetUserId());
+            User user = await iUser.GetUserSingleRecord(GetUserId());
 
             if (permissions.Any(permission => userHasPermission(permission, user)) && modules.Any(module => userHasModule(module, user)))
             {
@@ -153,18 +153,18 @@ namespace Backend_Blaupause.Helper
             return false;
         }
 
-        public void checkUserIsId(long id)
+        public async Task checkUserIsId(long id)
         {
-            User user = iUser.GetUserSingleRecord(GetUserId());
+            User user = await iUser.GetUserSingleRecord(GetUserId());
             
             if(!userHasPermission(IPermission.ADMINISTRATOR, user) && (GetUserId() != id)){
                 throw new HttpException(HttpStatusCode.Forbidden, "No access to this record");
             }
         }
 
-        public void checkToken(string token)
+        public async Task checkToken(string token)
         {
-            if (iUser.GetUserSingleRecord(GetUserId()).token != token)
+            if ((await iUser.GetUserSingleRecord(GetUserId())).token != token)
             {
                 throw new HttpException(HttpStatusCode.Unauthorized, "");
             }

@@ -19,6 +19,7 @@ namespace Backend_Blaupause.Controllers
     [Authorize]
     [ApiController]
     [Route("user")]
+    [Produces("application/json")]
     public class UserEndpoint : ControllerBase
     {
         private readonly IUser iUser;
@@ -33,32 +34,32 @@ namespace Backend_Blaupause.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public User getUserById(long id)
+        public async Task<ActionResult<User>> getUserById(long id)
         {
-            userAuthentication.checkUserIsId(id);
+            await userAuthentication.checkUserIsId(id);
 
-            return iUser.GetUserSingleRecord(id);
+            return Ok(await iUser.GetUserSingleRecord(id));
         }
 
         [HttpGet, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
-        public IEnumerable<User> Get()
+        public async Task<ActionResult<List<User>>> Get()
         {
-            return iUser.GetUserRecords().ToList();
+            return Ok(await iUser.GetUserRecords());
         }
 
         [HttpPost, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
-        public void addUser(User user)
+        public async Task<IActionResult> addUser(User user)
         {
-            iUser.AddUserRecord(user);
+            return Ok(await iUser.AddUserRecord(user));
         }
 
         [HttpGet]
         [Route("dto/{id:int}"), APILog]
-        public IQueryable<UserDTO> getUserDTO(long id)
+        public async Task<ActionResult<IQueryable<UserDTO>>> getUserDTO(long id)
         {
-            userAuthentication.checkUserIsId(id);
+            await userAuthentication.checkUserIsId(id);
 
-            return iUser.getUserDTO(id);
+            return Ok(await iUser.getUserDTO(id));
         }
     }
 }

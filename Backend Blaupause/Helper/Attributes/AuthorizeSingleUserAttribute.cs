@@ -24,7 +24,7 @@ namespace Backend_Blaupause.Helper
         }
 
 
-        private class AuthorizeSingleUserFilter : IResultFilter
+        private class AuthorizeSingleUserFilter : IAsyncResultFilter
         {
             private readonly UserAuthentication userAuthentication;
 
@@ -39,9 +39,14 @@ namespace Backend_Blaupause.Helper
 
             public void OnResultExecuting(ResultExecutingContext context)
             {
+
+            }
+
+            public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
+            {
                 try
                 {
-                    userAuthentication.checkToken(context.HttpContext.Request.Headers["Authorization"]);
+                    await userAuthentication.checkToken(context.HttpContext.Request.Headers["Authorization"]);
                 }
                 catch
                 {

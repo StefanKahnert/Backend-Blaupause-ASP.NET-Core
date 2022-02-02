@@ -56,7 +56,7 @@ namespace Backend_Blaupause.Helper
             Arguments = new object[] { permissions, modules };
         }
 
-        private class PermissionFilter : IResultFilter
+        private class PermissionFilter : IAsyncResultFilter
         {
             private readonly UserAuthentication userAuthentication;
 
@@ -92,39 +92,38 @@ namespace Backend_Blaupause.Helper
                 this.modules = modules;
             }
 
-            public void OnResultExecuted(ResultExecutedContext context)
+            public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
             {
-            }
-
-            public void OnResultExecuting(ResultExecutingContext context)
-            {
-                if(this.permission != null && this.module != null)
+                if (this.permission != null && this.module != null)
                 {
-                    if (!userAuthentication.userHasPermissionAndModule(this.permission, this.module))
+                    if (!await userAuthentication.userHasPermissionAndModule(this.permission, this.module))
                     {
                         throw new HttpException(HttpStatusCode.Forbidden, "Sie benötigen die Berechtigung '" + this.permission + "' und Zugriff auf Modul " + this.module);
                     }
-                } else if (this.permission != null && this.modules != null)
+                }
+                else if (this.permission != null && this.modules != null)
                 {
-                    if (!userAuthentication.userHasPermissionAndModules(this.permission, this.modules))
+                    if (!await userAuthentication.userHasPermissionAndModules(this.permission, this.modules))
                     {
                         throw new HttpException(HttpStatusCode.Forbidden, "Sie benötigen die Berechtigung '" + this.permission + "' und Zugriff auf eines der Module " + this.modules);
                     }
-                } else if (this.permissions != null && this.module != null)
+                }
+                else if (this.permissions != null && this.module != null)
                 {
-                    if (!userAuthentication.userHasPermissionsAndModule(this.permissions, this.module))
+                    if (!await userAuthentication.userHasPermissionsAndModule(this.permissions, this.module))
                     {
                         throw new HttpException(HttpStatusCode.Forbidden, "Sie benötigen die Berechtigung '" + this.permissions + "' und Zugriff auf eines der Module " + this.module);
                     }
-                } else if (this.permissions != null && this.modules != null)
+                }
+                else if (this.permissions != null && this.modules != null)
                 {
-                    if (!userAuthentication.userHasPermissionsAndModules(this.permissions, this.modules))
+                    if (!await userAuthentication.userHasPermissionsAndModules(this.permissions, this.modules))
                     {
                         throw new HttpException(HttpStatusCode.Forbidden, "Sie benötigen die Berechtigung '" + this.permissions + "' und Zugriff auf eines der Module " + this.modules);
                     }
                 }
 
-
+                await next();
             }
         }
 

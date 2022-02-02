@@ -38,12 +38,11 @@ namespace Backend_Blaupause.Controllers
         /// <param name="credentials"></param>
         /// <returns>JWT Token</returns>
         [HttpPost]
-        public AccessToken generateToken([FromBody] UserIdentity credentials)
+        public async Task<AccessToken> generateToken([FromBody] UserIdentity credentials)
         {
-            string password = string.Empty;
-            password = SHA512Generator.generateSha512Hash(credentials.Password);
+            string password = SHA512Generator.generateSha512Hash(credentials.Password);
 
-            User user = iUser.getUserByName(credentials.Login);
+            User user = await iUser.getUserByName(credentials.Login);
 
 
             if (user == null || user.password != password || user.username != credentials.Login)
@@ -90,7 +89,7 @@ namespace Backend_Blaupause.Controllers
 
             user.token = "Bearer " + tokenHash;
 
-            iUser.UpdateUserRecord(user);
+            await iUser.UpdateUserRecord(user);
 
             return new AccessToken
             {

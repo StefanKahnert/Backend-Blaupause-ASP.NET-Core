@@ -1,0 +1,6 @@
+2022-02-02T18:29:39.3106777+01:00  [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results. (f43d926b)
+2022-02-02T18:29:40.1044736+01:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2022-02-02T18:29:40.1045867+01:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2022-02-02T18:29:40.1047704+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-02-02T18:29:40.1047910+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2022-02-02T18:29:40.1048078+01:00  [INF] Content root path: "C:\Entwicklung\C# Backend Blaupause\Backend Blaupause" (b5d60022)
