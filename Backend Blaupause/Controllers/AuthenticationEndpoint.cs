@@ -53,7 +53,7 @@ namespace Backend_Blaupause.Controllers
                 return new AccessToken { Success = false };
             }
 
-            if (user.token != "")
+            if (!string.IsNullOrEmpty(user.token))
             {
 				string tokenString = user.token.Replace("Bearer ", "");
 				JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();

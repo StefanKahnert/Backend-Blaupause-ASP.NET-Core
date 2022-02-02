@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# IDE1006: Benennungsstile
+dotnet_diagnostic.IDE1006.severity = none
+
+# CS1998: Bei der asynchronen Methode fehlen "await"-Operatoren. Die Methode wird synchron ausgeführt.
+dotnet_diagnostic.CS1998.severity = none
