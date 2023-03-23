@@ -59,6 +59,8 @@ builder.Services.AddTransient((config) =>
     return conf;
 });
 
+builder.Services.AddResponseCaching();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -93,6 +95,8 @@ app.UseCors(options => options.WithOrigins("*").AllowAnyMethod());
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseResponseCaching();
 
 app.UseAuthentication();
 
