@@ -18,15 +18,15 @@ namespace Backend_Blaupause.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IUser iUser;
-        private readonly JWTConfiguration configuration;
-        private readonly ILogger<AuthenticationController> logger;
+        private readonly IUser _user;
+        private readonly JWTConfiguration _jwtConfiguration;
+        private readonly ILogger<AuthenticationController> _logger;
 
         public AuthenticationController(IUser iUser, JWTConfiguration configuration, ILogger<AuthenticationController> logger)
         {
-            this.iUser = iUser;
-            this.configuration = configuration;
-            this.logger = logger;
+            _user = iUser;
+            _jwtConfiguration = configuration;
+            _logger = logger;
         }
 
         /// <summary>
@@ -40,13 +40,13 @@ namespace Backend_Blaupause.Controllers
         {
             string password = SHA512Generator.generateSha512Hash(credentials.Password);
 
-            User user = await iUser.getUserByName(credentials.Login);
+            User user = await _user.getUserByName(credentials.Login);
 
 
             if (user == null || user.password != password || user.username != credentials.Login)
             {
                 string username = user == null ? "unknown" : user.username;
-                logger.LogInformation("User: " + username + " has failed to login.");
+                _logger.LogInformation("User: " + username + " has failed to login.");
                 Response.StatusCode = StatusCodes.Status401Unauthorized;
                 return new AccessToken { Success = false };
             }
@@ -64,7 +64,7 @@ namespace Backend_Blaupause.Controllers
 				}
 			}
 
-            logger.LogInformation("User: " + user.username + " has successully logged in.");
+            _logger.LogInformation("User: " + user.username + " has successully logged in.");
 
             var claims = new[]
             {
@@ -72,12 +72,12 @@ namespace Backend_Blaupause.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration.SecretKey));
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtConfiguration.SecretKey));
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            DateTime expiredOn = DateTime.Now.AddSeconds(configuration.TokenExpirationTime);
+            DateTime expiredOn = DateTime.Now.AddSeconds(_jwtConfiguration.TokenExpirationTime);
 
-            JwtSecurityToken token = new JwtSecurityToken(configuration.ValidIssuer,
-                  configuration.ValidAudience,
+            JwtSecurityToken token = new JwtSecurityToken(_jwtConfiguration.ValidIssuer,
+                  _jwtConfiguration.ValidAudience,
                   claims,
                   expires: expiredOn,
                   signingCredentials: creds);
@@ -87,13 +87,13 @@ namespace Backend_Blaupause.Controllers
 
             user.token = "Bearer " + tokenHash;
 
-            await iUser.UpdateUserRecord(user);
+            await _user.UpdateUserRecord(user);
 
             return new AccessToken
             {
                 ExpireOnDate = token.ValidTo,
                 Success = true,
-                ExpiryIn = configuration.TokenExpirationTime,
+                ExpiryIn = _jwtConfiguration.TokenExpirationTime,
                 Token = tokenHash
             };
     }

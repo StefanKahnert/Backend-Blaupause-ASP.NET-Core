@@ -18,14 +18,14 @@ namespace Backend_Blaupause.Controllers
     [Produces("application/json")]
     public class UserController : ControllerBase
     {
-        private readonly IUser iUser;
+        private readonly IUser _user;
 
         private readonly UserAuthentication _userAuthentication;
 
         public UserController(IUser userModel, UserAuthentication userAuthentication)
         {
-            this.iUser = userModel;
-            this._userAuthentication = userAuthentication;
+            _user = userModel;
+            _userAuthentication = userAuthentication;
         }
 
         [HttpGet]
@@ -40,21 +40,21 @@ namespace Backend_Blaupause.Controllers
 
             await _userAuthentication.CheckUserIsIdAsync(id);
 
-            return Ok(await iUser.GetUserSingleRecord(id));
+            return Ok(await _user.GetUserSingleRecord(id));
         }
 
         [HttpGet, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
         [ProducesResponseType(typeof(List<User>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<List<User>>> Get()
         {
-            return Ok(await iUser.GetUserRecords());
+            return Ok(await _user.GetUserRecords());
         }
 
         [HttpPost, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
         [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<User>> addUser(User user)
         {
-            return Ok(await iUser.AddUserRecord(user));
+            return Ok(await _user.AddUserRecord(user));
         }
 
         [HttpGet]
@@ -64,7 +64,7 @@ namespace Backend_Blaupause.Controllers
         {
             await _userAuthentication.CheckUserIsIdAsync(id);
 
-            return Ok(await iUser.getUserDTO(id));
+            return Ok(await _user.getUserDTO(id));
         }
     }
 }
