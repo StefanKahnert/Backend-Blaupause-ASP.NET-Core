@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -12,12 +9,10 @@ namespace Backend_Blaupause.Helper.ExceptionHandling
     public class ExceptionHandler
     {
         private readonly RequestDelegate _next;
-        public readonly ILogger<ExceptionHandler> logger;
 
-        public ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> logger)
+        public ExceptionHandler(RequestDelegate next)
         {
             _next = next;
-            this.logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
@@ -26,39 +21,36 @@ namespace Backend_Blaupause.Helper.ExceptionHandling
             {
                 await _next(context);
             }
-            catch (Exception ex)
+            catch (HttpException ex)
             {
-                await HandleExceptionAsync(context, ex, logger);
+                await HandleExceptionAsync(context, ex);
+            }
+            catch (HttpRequestException ex)
+            {
+                await HandleExceptionAsync(context, new HttpException(ex.StatusCode.Value, ex.Message));
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception, ILogger<ExceptionHandler> logger)
+        private static Task HandleExceptionAsync(HttpContext context, HttpException exception)
         {
             HttpStatusCode status;
             string message;
-            var stackTrace = String.Empty;
 
-            var exceptionType = exception.GetType();
+            message = exception.Message;
+            status = exception.Status;
 
-            if (exceptionType == typeof(HttpException))
+            var result = JsonSerializer.Serialize(new { error = message, parameters = exception.Parameters });
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)status;
+
+            if (exception.Message != null || exception.Parameters != null)
             {
-                HttpException httpException = (HttpException) exception;
-                message = exception.Message;
-                status = httpException.status;
+                return context.Response.WriteAsync(result);
             }
             else
             {
-                status = HttpStatusCode.InternalServerError;
-                message = "";
-                logger.LogError(exception.Message + "\r\n" + exception.StackTrace);
-
+                return context.Response.CompleteAsync();
             }
-
-            var result = JsonSerializer.Serialize(new { error = message, stackTrace });
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)status;
-            return context.Response.WriteAsync(result);
         }
     }
 }
-
