@@ -17,15 +17,15 @@ using System.Threading.Tasks;
 
 namespace Backend_Blaupause.Controllers
 {
-    [Route("authentication")]
+    [Route("[controller]")]
     [ApiController]
-    public class AuthenticationEndpoint : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         private readonly IUser iUser;
         private readonly JWTConfiguration configuration;
-        private readonly ILogger<AuthenticationEndpoint> logger;
+        private readonly ILogger<AuthenticationController> logger;
 
-        public AuthenticationEndpoint(IUser iUser, JWTConfiguration configuration, ILogger<AuthenticationEndpoint> logger)
+        public AuthenticationController(IUser iUser, JWTConfiguration configuration, ILogger<AuthenticationController> logger)
         {
             this.iUser = iUser;
             this.configuration = configuration;

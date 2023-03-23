@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace Backend_Blaupause.Controllers
 {
     [ApiController]
-    [Route("")]
-    public class HeadEndpoint : ControllerBase
+    [Route("[controller]")]
+    public class HeadController : ControllerBase
     {
         [HttpHead]
         public async Task<IActionResult> head()

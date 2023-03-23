@@ -13,13 +13,13 @@ namespace Backend_Blaupause.Helper
 {
     public class UserAuthentication
     {
-        private readonly IHttpContextAccessor httpContext;
-        private readonly IUser iUser;
+        private readonly IHttpContextAccessor _httpContext;
+        private readonly IUser _user;
 
-        public UserAuthentication(IHttpContextAccessor httpContext, IUser iUser)
+        public UserAuthentication(IHttpContextAccessor httpContext, IUser user)
         {
-            this.httpContext = httpContext;
-            this.iUser = iUser;
+            _httpContext = httpContext;
+            _user = user;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Backend_Blaupause.Helper
         {
             try
             {
-                var user = httpContext?.HttpContext?.User as ClaimsPrincipal;
+                var user = _httpContext?.HttpContext?.User;
                 var userId = user.Claims.ElementAt(0).Value;
                 return Convert.ToInt64(userId);
             }
@@ -46,7 +46,7 @@ namespace Backend_Blaupause.Helper
         /// <param name="module"></param>
         /// <param name="user"></param>
         /// <returns>bool value</returns>
-        private bool userHasModule(string module, User user)
+        private bool UserHasModule(string module, User user)
         {
             if(module == IUser.NONE || user.userPermissions.Any(up => up.permission.name.Equals(IPermission.ADMINISTRATOR)))
             {
@@ -70,7 +70,7 @@ namespace Backend_Blaupause.Helper
         /// <param name="permission"></param>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool userHasPermission(string permission, User user)
+        public bool UserHasPermission(string permission, User user)
         {
             if (permission == IPermission.NONE || user.userPermissions.Any(up => up.permission.name.Equals(IPermission.ADMINISTRATOR)))
             {
@@ -87,11 +87,11 @@ namespace Backend_Blaupause.Helper
         /// <param name="permission"></param>
         /// <param name="module"></param>
         /// <returns></returns>
-        public async Task<bool> userHasPermissionAndModule(string permission, string module)
+        public async Task<bool> UserHasPermissionAndModuleAsync(string permission, string module)
         {
-            User user = await iUser.GetUserSingleRecord(GetUserId());
+            User user = await _user.GetUserSingleRecord(GetUserId());
  
-            if (userHasPermission(permission, user) && userHasModule(module, user) )
+            if (UserHasPermission(permission, user) && UserHasModule(module, user) )
             {
                 return true;
             }
@@ -105,11 +105,11 @@ namespace Backend_Blaupause.Helper
         /// <param name="permission"></param>
         /// <param name="modules"></param>
         /// <returns></returns>
-        public async Task<bool> userHasPermissionAndModules(string permission, List<string> modules)
+        public async Task<bool> UserHasPermissionAndModulesAsync(string permission, List<string> modules)
         {
-            User user = await iUser.GetUserSingleRecord(GetUserId());
+            User user = await _user.GetUserSingleRecord(GetUserId());
 
-            if (userHasPermission(permission, user) && modules.Any(module => userHasModule(module, user)))
+            if (UserHasPermission(permission, user) && modules.Any(module => UserHasModule(module, user)))
             {
                 return true;
             }
@@ -123,11 +123,11 @@ namespace Backend_Blaupause.Helper
         /// <param name="permissions"></param>
         /// <param name="module"></param>
         /// <returns></returns>
-        public async Task<bool> userHasPermissionsAndModule(List<string> permissions, string module)
+        public async Task<bool> UserHasPermissionsAndModuleAsync(List<string> permissions, string module)
         {
-            User user = await iUser.GetUserSingleRecord(GetUserId());
+            User user = await _user.GetUserSingleRecord(GetUserId());
 
-            if (permissions.Any(permission => userHasPermission(permission, user)) && userHasModule(module, user))
+            if (permissions.Any(permission => UserHasPermission(permission, user)) && UserHasModule(module, user))
             {
                 return true;
             }
@@ -141,11 +141,11 @@ namespace Backend_Blaupause.Helper
         /// <param name="permissions"></param>
         /// <param name="modules"></param>
         /// <returns></returns>
-        public async Task<bool> userHasPermissionsAndModules(List<string> permissions, List<string> modules)
+        public async Task<bool> UserHasPermissionsAndModulesAsync(List<string> permissions, List<string> modules)
         {
-            User user = await iUser.GetUserSingleRecord(GetUserId());
+            User user = await _user.GetUserSingleRecord(GetUserId());
 
-            if (permissions.Any(permission => userHasPermission(permission, user)) && modules.Any(module => userHasModule(module, user)))
+            if (permissions.Any(permission => UserHasPermission(permission, user)) && modules.Any(module => UserHasModule(module, user)))
             {
                 return true;
             }
@@ -153,18 +153,18 @@ namespace Backend_Blaupause.Helper
             return false;
         }
 
-        public async Task checkUserIsId(long id)
+        public async Task CheckUserIsIdAsync(long id)
         {
-            User user = await iUser.GetUserSingleRecord(GetUserId());
+            User user = await _user.GetUserSingleRecord(GetUserId());
             
-            if(!userHasPermission(IPermission.ADMINISTRATOR, user) && (GetUserId() != id)){
+            if(!UserHasPermission(IPermission.ADMINISTRATOR, user) && (GetUserId() != id)){
                 throw new HttpException(HttpStatusCode.Forbidden, "No access to this record");
             }
         }
 
-        public async Task checkToken(string token)
+        public async Task CheckTokenAsync(string token)
         {
-            if ((await iUser.GetUserSingleRecord(GetUserId())).token != token)
+            if ((await _user.GetUserSingleRecord(GetUserId())).token != token)
             {
                 throw new HttpException(HttpStatusCode.Unauthorized, "");
             }

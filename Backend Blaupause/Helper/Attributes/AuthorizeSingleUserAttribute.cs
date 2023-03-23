@@ -37,7 +37,7 @@ namespace Backend_Blaupause.Helper
             {
                 try
                 {
-                    await userAuthentication.checkToken(context.HttpContext.Request.Headers["Authorization"]);
+                    await userAuthentication.CheckTokenAsync(context.HttpContext.Request.Headers["Authorization"]);
                 }
                 catch
                 {

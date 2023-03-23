@@ -42,11 +42,11 @@ namespace Backend_Blaupause_Unit_Test
 
             var mockResponse = new Mock<HttpResponse>();
 
-            var mockLogger = new Mock<ILogger<AuthenticationEndpoint>>();
+            var mockLogger = new Mock<ILogger<AuthenticationController>>();
 
             //2. Execute Tested Unit with right Data
             mockIUser.Setup(iUser => iUser.getUserByName(mockUserIdentity.Login)).Returns(Task.FromResult(mockUser));
-            AuthenticationEndpoint authenticationEndpoint = new AuthenticationEndpoint(mockIUser.Object, jwtConfiguration, mockLogger.Object)
+            AuthenticationController authenticationEndpoint = new AuthenticationController(mockIUser.Object, jwtConfiguration, mockLogger.Object)
             {
                 ControllerContext = new Microsoft.AspNetCore.Mvc.ControllerContext()
                 {
@@ -62,7 +62,7 @@ namespace Backend_Blaupause_Unit_Test
 
             //4. Execute Tested Unit with wrong data
             mockIUser.Setup(iUser => iUser.getUserByName(mockUserIdentity.Login)).Returns(Task.FromResult(new User()));
-            authenticationEndpoint = new AuthenticationEndpoint(mockIUser.Object, jwtConfiguration, mockLogger.Object)
+            authenticationEndpoint = new AuthenticationController(mockIUser.Object, jwtConfiguration, mockLogger.Object)
             {
                 ControllerContext = new Microsoft.AspNetCore.Mvc.ControllerContext()
                 {

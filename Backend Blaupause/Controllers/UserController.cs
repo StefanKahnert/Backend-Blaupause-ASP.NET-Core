@@ -18,25 +18,25 @@ namespace Backend_Blaupause.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("user")]
+    [Route("[controller]")]
     [Produces("application/json")]
-    public class UserEndpoint : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUser iUser;
 
-        private readonly UserAuthentication userAuthentication;
+        private readonly UserAuthentication _userAuthentication;
 
-        public UserEndpoint(IUser userModel, UserAuthentication userAuthentication)
+        public UserController(IUser userModel, UserAuthentication userAuthentication)
         {
             this.iUser = userModel;
-            this.userAuthentication = userAuthentication;
+            this._userAuthentication = userAuthentication;
         }
 
         [HttpGet]
         [Route("{id:int}")]
         public async Task<ActionResult<User>> getUserById(long id)
         {
-            await userAuthentication.checkUserIsId(id);
+            await _userAuthentication.CheckUserIsIdAsync(id);
 
             return Ok(await iUser.GetUserSingleRecord(id));
         }
@@ -57,7 +57,7 @@ namespace Backend_Blaupause.Controllers
         [Route("dto/{id:int}"), APILog]
         public async Task<ActionResult<IQueryable<UserDTO>>> getUserDTO(long id)
         {
-            await userAuthentication.checkUserIsId(id);
+            await _userAuthentication.CheckUserIsIdAsync(id);
 
             return Ok(await iUser.getUserDTO(id));
         }

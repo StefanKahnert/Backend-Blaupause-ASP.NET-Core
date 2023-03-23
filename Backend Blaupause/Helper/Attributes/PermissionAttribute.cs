@@ -96,28 +96,28 @@ namespace Backend_Blaupause.Helper
             {
                 if (this.permission != null && this.module != null)
                 {
-                    if (!await userAuthentication.userHasPermissionAndModule(this.permission, this.module))
+                    if (!await userAuthentication.UserHasPermissionAndModuleAsync(this.permission, this.module))
                     {
                         throw new HttpException(HttpStatusCode.Forbidden, "Sie benötigen die Berechtigung '" + this.permission + "' und Zugriff auf Modul " + this.module);
                     }
                 }
                 else if (this.permission != null && this.modules != null)
                 {
-                    if (!await userAuthentication.userHasPermissionAndModules(this.permission, this.modules))
+                    if (!await userAuthentication.UserHasPermissionAndModulesAsync(this.permission, this.modules))
                     {
                         throw new HttpException(HttpStatusCode.Forbidden, "Sie benötigen die Berechtigung '" + this.permission + "' und Zugriff auf eines der Module " + this.modules);
                     }
                 }
                 else if (this.permissions != null && this.module != null)
                 {
-                    if (!await userAuthentication.userHasPermissionsAndModule(this.permissions, this.module))
+                    if (!await userAuthentication.UserHasPermissionsAndModuleAsync(this.permissions, this.module))
                     {
                         throw new HttpException(HttpStatusCode.Forbidden, "Sie benötigen die Berechtigung '" + this.permissions + "' und Zugriff auf eines der Module " + this.module);
                     }
                 }
                 else if (this.permissions != null && this.modules != null)
                 {
-                    if (!await userAuthentication.userHasPermissionsAndModules(this.permissions, this.modules))
+                    if (!await userAuthentication.UserHasPermissionsAndModulesAsync(this.permissions, this.modules))
                     {
                         throw new HttpException(HttpStatusCode.Forbidden, "Sie benötigen die Berechtigung '" + this.permissions + "' und Zugriff auf eines der Module " + this.modules);
                     }

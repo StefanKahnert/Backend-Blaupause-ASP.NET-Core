@@ -4,7 +4,7 @@
     "Backend_Blaupause": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "user",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

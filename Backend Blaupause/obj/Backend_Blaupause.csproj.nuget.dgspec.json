@@ -1,35 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj": {}
+    "D:\\Stefan\\Repos\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj": {}
   },
   "projects": {
-    "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj": {
+    "D:\\Stefan\\Repos\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj",
+        "projectUniqueName": "D:\\Stefan\\Repos\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj",
         "projectName": "Backend_Blaupause",
-        "projectPath": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\Backend_Blaupause.csproj",
-        "packagesPath": "C:\\Users\\skahn\\.nuget\\packages\\",
-        "outputPath": "C:\\Entwicklung\\C# Backend Blaupause\\Backend Blaupause\\obj\\",
+        "projectPath": "D:\\Stefan\\Repos\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\Backend_Blaupause.csproj",
+        "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
+        "outputPath": "D:\\Stefan\\Repos\\Backend-Blaupause-ASP.NET-Core\\Backend Blaupause\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\skahn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Stefan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -40,12 +42,12 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[6.0.15, )"
             },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
@@ -53,11 +55,11 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.2, )"
+              "version": "[6.0.15, )"
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[6.0.15, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -65,7 +67,7 @@
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[6.0.8, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
               "target": "Package",
@@ -75,9 +77,25 @@
               "target": "Package",
               "version": "[2.0.0, )"
             },
+            "Swashbuckle": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
-              "version": "[4.8.2, )"
+              "version": "[4.8.5, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
@@ -90,7 +108,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -102,7 +121,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
