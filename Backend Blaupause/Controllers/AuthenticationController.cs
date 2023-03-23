@@ -36,7 +36,6 @@ namespace Backend_Blaupause.Controllers
         /// <returns>JWT Token</returns>
         [HttpPost]
         [ProducesResponseType(typeof(AccessToken), (int) HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(HttpException), (int) HttpStatusCode.Conflict)]
         public async Task<AccessToken> generateToken([FromBody] UserIdentity credentials)
         {
             string password = SHA512Generator.generateSha512Hash(credentials.Password);

@@ -31,9 +31,6 @@ namespace Backend_Blaupause.Controllers
         [HttpGet]
         [Route("{id:int}")]
         [ProducesResponseType(typeof(User), (int) HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Unauthorized)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Forbidden)]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<User>> getUserById(long id)
         {
             if(id <= 0)
@@ -48,9 +45,6 @@ namespace Backend_Blaupause.Controllers
 
         [HttpGet, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
         [ProducesResponseType(typeof(List<User>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Unauthorized)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Forbidden)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.NoContent)]
         public async Task<ActionResult<List<User>>> Get()
         {
             return Ok(await iUser.GetUserRecords());
@@ -58,9 +52,6 @@ namespace Backend_Blaupause.Controllers
 
         [HttpPost, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
         [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Unauthorized)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Forbidden)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<User>> addUser(User user)
         {
             return Ok(await iUser.AddUserRecord(user));
@@ -68,8 +59,7 @@ namespace Backend_Blaupause.Controllers
 
         [HttpGet]
         [Route("dto/{id:int}"), APILog]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Unauthorized)]
-        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(UserDTO), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IQueryable<UserDTO>>> getUserDTO(long id)
         {
             await _userAuthentication.CheckUserIsIdAsync(id);
