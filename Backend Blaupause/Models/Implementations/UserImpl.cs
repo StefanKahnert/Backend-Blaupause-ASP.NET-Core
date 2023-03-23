@@ -1,10 +1,9 @@
-﻿using Backend_Blaupause.Helper;
+﻿using Backend_Blaupause.Helper.ExceptionHandling;
 using Backend_Blaupause.Models.DTOs;
-using Backend_Blaupause.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Backend_Blaupause.Models
@@ -42,19 +41,25 @@ namespace Backend_Blaupause.Models
 
         public async Task<User> GetUserSingleRecord(long id)
         {
-            return await db.user.FirstOrDefaultAsync(t => t.id == id);
+            return await db.user.AsNoTracking().FirstOrDefaultAsync(t => t.id == id);
         }
 
         public async Task<List<User>> GetUserRecords()
         {
+            var result = await db.user.AsNoTracking().ToListAsync();
+
+            if(result == null || !result.Any())
+            {
+                throw new HttpException(HttpStatusCode.NoContent);
+            }
+
             return await db.user.ToListAsync();
         }
 
         public async Task<IQueryable<UserDTO>> getUserDTO(long id)
         {
-            var userDTO = from u in db.user
+            var userDTO = from u in db.user.AsNoTracking()
                           where u.id == id
-                              //join u2 in db.User on u.id equals u2.id
                           select new UserDTO()
                           {
                               id = u.id,
@@ -66,7 +71,7 @@ namespace Backend_Blaupause.Models
 
         public async Task<User> getUserByName(string name)
         {
-            return await db.user.Include(u => u.userPermissions).ThenInclude(ur => ur.permission).FirstOrDefaultAsync(t => t.username == name);
+            return await db.user.AsNoTracking().Include(u => u.userPermissions).ThenInclude(ur => ur.permission).FirstOrDefaultAsync(t => t.username == name);
         }
 
     }
