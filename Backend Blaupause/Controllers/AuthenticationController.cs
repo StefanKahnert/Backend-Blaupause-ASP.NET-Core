@@ -6,12 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +35,8 @@ namespace Backend_Blaupause.Controllers
         /// <param name="credentials"></param>
         /// <returns>JWT Token</returns>
         [HttpPost]
+        [ProducesResponseType(typeof(AccessToken), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(HttpException), (int) HttpStatusCode.Conflict)]
         public async Task<AccessToken> generateToken([FromBody] UserIdentity credentials)
         {
             string password = SHA512Generator.generateSha512Hash(credentials.Password);

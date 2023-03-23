@@ -5,13 +5,9 @@ using Backend_Blaupause.Models.DTOs;
 using Backend_Blaupause.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Backend_Blaupause.Controllers
@@ -34,27 +30,46 @@ namespace Backend_Blaupause.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
+        [ProducesResponseType(typeof(User), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<User>> getUserById(long id)
         {
+            if(id <= 0)
+            {
+                return BadRequest($"{nameof(id)} must be equal or larger than 0");
+            }
+
             await _userAuthentication.CheckUserIsIdAsync(id);
 
             return Ok(await iUser.GetUserSingleRecord(id));
         }
 
         [HttpGet, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
+        [ProducesResponseType(typeof(List<User>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.NoContent)]
         public async Task<ActionResult<List<User>>> Get()
         {
             return Ok(await iUser.GetUserRecords());
         }
 
         [HttpPost, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
-        public async Task<IActionResult> addUser(User user)
+        [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult<User>> addUser(User user)
         {
             return Ok(await iUser.AddUserRecord(user));
         }
 
         [HttpGet]
         [Route("dto/{id:int}"), APILog]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(HttpException), (int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<IQueryable<UserDTO>>> getUserDTO(long id)
         {
             await _userAuthentication.CheckUserIsIdAsync(id);

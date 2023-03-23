@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Backend_Blaupause.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Backend_Blaupause.Controllers
     public class HeadController : ControllerBase
     {
         [HttpHead]
+        [ProducesResponseType((int) HttpStatusCode.OK)]
         public async Task<IActionResult> head()
         {
             return StatusCode((int)HttpStatusCode.NoContent);
