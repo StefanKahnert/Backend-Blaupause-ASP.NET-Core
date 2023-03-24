@@ -11,7 +11,11 @@ using System.Net;
 using Backend_Blaupause.Helper.ExceptionHandling;
 using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
+using System.IdentityModel.Tokens.Jwt;
+using System.IO;
+using System.Security.Claims;
 
 namespace Backend_Blaupause.Helper
 {
@@ -25,28 +29,40 @@ namespace Backend_Blaupause.Helper
         }
 
 
-        private class APILogFilter : IResultFilter
+        private class APILogFilter : IAsyncResultFilter
         {
 
             //private readonly ILogger logger;
-            private readonly string caller;
-            private readonly ILogger<APILogFilter> logger;
-            private readonly UserAuthentication userAuthentication;
+            private readonly string _caller;
+            private readonly ILogger<APILogFilter> _logger;
 
-            public APILogFilter(UserAuthentication userAuthentication, ILogger<APILogFilter> logger, string caller)
+            public APILogFilter(ILogger<APILogFilter> logger, string caller)
             {
-                this.caller = caller;
-                this.logger = logger;
-                this.userAuthentication = userAuthentication;
+                _caller = caller;
+                _logger = logger;
             }
 
-            public void OnResultExecuted(ResultExecutedContext context)
+            public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
             {
-            }
+                var stream = (await context.HttpContext.GetTokenAsync("access_token"));
+                string userId;
 
-            public void OnResultExecuting(ResultExecutingContext context)
-            {
-                logger.LogInformation(userAuthentication.GetUserId() == -1 ? "Unknown User" : userAuthentication.GetUserId() + " has called API: " + caller + " in Controller " + context.Controller.GetType());  
+                if(stream == null)
+                {
+                    userId = null;
+                } else
+                {
+                    var handler = new JwtSecurityTokenHandler();
+                    var jsonToken = handler.ReadToken(stream);
+                    var token = jsonToken as JwtSecurityToken;
+
+                    userId = token.Claims.FirstOrDefault(claim => claim.Type == JwtRegisteredClaimNames.Sub)?.Value;
+                }
+
+
+                _logger.LogInformation((string.IsNullOrWhiteSpace(userId) ? "Unknown User" : ("UserId: " + userId)) + " has called API: " + _caller + " in Controller " + context.Controller.GetType());
+
+                await next.Invoke();
             }
         }
 

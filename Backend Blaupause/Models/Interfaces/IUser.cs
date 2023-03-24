@@ -17,7 +17,7 @@ namespace Backend_Blaupause.Models
         Task<User> GetUserSingleRecord(long id);
         Task<User> getUserByName(string name);
         Task<List<User>> GetUserRecords();
-        Task<IQueryable<UserDTO>> getUserDTO(long id);
+        Task<UserDTO> getUserDTO(long id);
 
     }
 }

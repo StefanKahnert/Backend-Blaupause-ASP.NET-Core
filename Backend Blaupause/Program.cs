@@ -21,6 +21,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +39,6 @@ var sqlConnectionString = builder.Configuration.GetValue<string>("ConnectionStri
 
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(sqlConnectionString));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddScoped<UserAuthentication>();
 
 builder.Services.AddScoped<IUser, UserImpl>();
 
@@ -110,6 +110,11 @@ app.MapControllers();
 
 
 var databasemigrationService = builder.Services.BuildServiceProvider().GetService<DatabaseMigrationService>();
+
+if (databasemigrationService.dbVersionTableExists())
+{
+    databasemigrationService.updateDatabaseToCurrentVersion();
+}
 
 app.Run();
 

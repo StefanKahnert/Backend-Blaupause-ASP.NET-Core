@@ -56,7 +56,7 @@ namespace Backend_Blaupause.Models
             return await db.user.ToListAsync();
         }
 
-        public async Task<IQueryable<UserDTO>> getUserDTO(long id)
+        public async Task<UserDTO> getUserDTO(long id)
         {
             var userDTO = from u in db.user.AsNoTracking()
                           where u.id == id
@@ -66,7 +66,7 @@ namespace Backend_Blaupause.Models
                               firstName = u.firstName,
                               lastName = u.lastName
                           };
-            return userDTO;
+            return await userDTO.FirstOrDefaultAsync();
         }
 
         public async Task<User> getUserByName(string name)

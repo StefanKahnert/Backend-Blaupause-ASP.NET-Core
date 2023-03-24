@@ -1,4 +1,5 @@
 ﻿using Backend_Blaupause.Helper;
+using Backend_Blaupause.Helper.Attributes;
 using Backend_Blaupause.Helper.ExceptionHandling;
 using Backend_Blaupause.Models;
 using Backend_Blaupause.Models.DTOs;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Backend_Blaupause.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     [Produces("application/json")]
@@ -20,12 +21,9 @@ namespace Backend_Blaupause.Controllers
     {
         private readonly IUser _user;
 
-        private readonly UserAuthentication _userAuthentication;
-
-        public UserController(IUser userModel, UserAuthentication userAuthentication)
+        public UserController(IUser userModel)
         {
             _user = userModel;
-            _userAuthentication = userAuthentication;
         }
 
         [HttpGet]
@@ -38,19 +36,19 @@ namespace Backend_Blaupause.Controllers
                 return BadRequest($"{nameof(id)} must be equal or larger than 0");
             }
 
-            await _userAuthentication.CheckUserIsIdAsync(id);
-
             return Ok(await _user.GetUserSingleRecord(id));
         }
 
-        [HttpGet, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
+        [HttpGet]
+        [AuthorizeRoles(IPermission.USER, IPermission.ADMINISTRATOR)]
         [ProducesResponseType(typeof(List<User>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<List<User>>> Get()
         {
             return Ok(await _user.GetUserRecords());
         }
 
-        [HttpPost, Permission(IPermission.ADMINISTRATOR, IUser.NONE)]
+        [HttpPost]
+        [AuthorizeRoles(IPermission.ADMINISTRATOR)]
         [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<User>> addUser(User user)
         {
@@ -60,11 +58,9 @@ namespace Backend_Blaupause.Controllers
         [HttpGet]
         [Route("dto/{id:int}"), APILog]
         [ProducesResponseType(typeof(UserDTO), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IQueryable<UserDTO>>> getUserDTO(long id)
+        public async Task<ActionResult<UserDTO>> getUserDTO(long id)
         {
-            await _userAuthentication.CheckUserIsIdAsync(id);
-
-            return Ok(await _user.getUserDTO(id));
+            return await _user.getUserDTO(id);
         }
     }
 }
