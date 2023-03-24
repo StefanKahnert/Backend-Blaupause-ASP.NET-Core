@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Backend_Blaupause.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     [Produces("application/json")]
