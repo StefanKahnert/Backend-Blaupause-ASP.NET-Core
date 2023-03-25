@@ -13,11 +13,11 @@ namespace Backend_Blaupause.Models
 
         Task<User> AddUserRecord(User user);
         Task UpdateUserRecord(User user);
-        Task DeleteUserRecord(long id);
-        Task<User> GetUserSingleRecord(long id);
+        Task DeleteUserRecord(string id);
+        Task<User> GetUserSingleRecord(string id);
         Task<User> getUserByName(string name);
         Task<List<User>> GetUserRecords();
-        Task<UserDTO> getUserDTO(long id);
+        Task<UserDTO> getUserDTO(string id);
 
     }
 }

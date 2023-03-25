@@ -7,9 +7,9 @@ namespace Backend_Blaupause.Models.DTOs
 {
     public class UserDTO
     {
-        public long id { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
+        public string Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         public UserDTO() { }
 

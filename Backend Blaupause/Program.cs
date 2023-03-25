@@ -22,6 +22,7 @@ using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
+using Backend_Blaupause.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,11 +41,11 @@ var sqlConnectionString = builder.Configuration.GetValue<string>("ConnectionStri
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(sqlConnectionString));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-builder.Services.AddScoped<IUser, UserImpl>();
+builder.Services.AddTransient<IUser, UserImpl>();
 
-builder.Services.AddScoped<DatabaseMigrationService>();
+builder.Services.AddTransient<DatabaseMigrationService>();
 
-builder.Services.AddScoped<ScheduleJobs>();
+builder.Services.AddTransient<ScheduleJobs>();
 
 builder.Services.AddTransient((config) =>
 {
@@ -52,12 +53,11 @@ builder.Services.AddTransient((config) =>
     builder.Configuration.GetSection("JWTConfiguration").Bind(conf);
     return conf;
 });
-builder.Services.AddTransient((config) =>
-{
-    var conf = new UserIdentity();
-    builder.Configuration.GetSection("UserIdentity").Bind(conf);
-    return conf;
-});
+
+builder.Services.AddIdentity<User, Permission>()
+            .AddEntityFrameworkStores<DatabaseContext>()
+            .AddDefaultTokenProviders();
+
 
 builder.Services.AddResponseCaching();
 
@@ -99,14 +99,11 @@ app.UseRouting();
 app.UseResponseCaching();
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.UseMiddleware(typeof(ExceptionHandler));
 
 app.MapControllers();
-
-
 
 
 var databasemigrationService = builder.Services.BuildServiceProvider().GetService<DatabaseMigrationService>();

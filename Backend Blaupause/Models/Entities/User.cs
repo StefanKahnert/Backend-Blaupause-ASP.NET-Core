@@ -1,66 +1,56 @@
 ﻿using Backend_Blaupause.Models.Entities;
+using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace Backend_Blaupause.Models
 {
-    public class User
+    public class User : IdentityUser
     {
         public User() { 
-            this.userPermissions = new HashSet<UserPermission>();
+            this.UserPermissions = new HashSet<UserPermission>();
         }
 
-        [Key, Required]
-        public long id { get; set; }
-
-        [ForeignKey("supervisor"), Column("supervisor_id")]
-        public long? supervisorId { get; set; }
-
-        public virtual User supervisor { get; set; }
-
-        [Required]
-        public string username { get; set; }
-
         [Column("first_name"), Required]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
 
         [Column("last_name"), Required]
-        public string lastName { get; set; }
-
-        public string email { get; set; }
+        public string LastName { get; set; }
 
         [Column("last_login")]
-        public DateTime? lastLogin { get; set; }
+        public DateTime? LastLogin { get; set; }
 
         [JsonIgnore]
-        public string password { get; set; }
+        public override string PasswordHash { get; set; }
 
         [Column("password_question")]
-        public string passwordQuestion { get; set; }
+        public string PasswordQuestion { get; set; }
 
-        public bool active { get; set; }
+        [Column("active")]
+        public bool Active { get; set; }
 
-        public bool hidden { get; set; }
+        [Column("hidden")]
+        public bool Hidden { get; set; }
 
         [Column("id_adress"), ForeignKey("adress")]
-        public long? adressId { get; set; }
+        public long? AdressId { get; set; }
 
         [Column("created_at")]
-        public DateTime? createdAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [Column("expiration_date")]
-        public DateTime? expirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
 
         [Column("modified_at")]
-        public DateTime? modifiedAt { get; set; }
+        public DateTime? ModifiedAt { get; set; }
 
         [Column("modified_by")]
-        public long? modifiedBy { get; set; }
+        public long? ModifiedBy { get; set; }
 
-        public virtual ICollection<UserPermission> userPermissions { get; set; }
+        public virtual ICollection<UserPermission> UserPermissions { get; set; }
 
     }
 }

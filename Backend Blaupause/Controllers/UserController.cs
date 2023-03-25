@@ -5,6 +5,7 @@ using Backend_Blaupause.Models.DTOs;
 using Backend_Blaupause.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -27,9 +28,9 @@ namespace Backend_Blaupause.Controllers
         [HttpGet]
         [Route("{id:int}")]
         [ProducesResponseType(typeof(User), (int) HttpStatusCode.OK)]
-        public async Task<ActionResult<User>> getUserById(long id)
+        public async Task<ActionResult<User>> getUserById(string id)
         {
-            if(id <= 0)
+            if(Int64.Parse(id) <= 0)
             {
                 return BadRequest($"{nameof(id)} must be equal or larger than 0");
             }
@@ -56,7 +57,7 @@ namespace Backend_Blaupause.Controllers
         [HttpGet]
         [Route("dto/{id:int}"), APILog]
         [ProducesResponseType(typeof(UserDTO), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UserDTO>> getUserDTO(long id)
+        public async Task<ActionResult<UserDTO>> getUserDTO(string id)
         {
             return await _user.getUserDTO(id);
         }

@@ -1,14 +1,14 @@
-﻿using Backend_Blaupause.Helper;
-using Backend_Blaupause.Helper.ExceptionHandling;
-using Backend_Blaupause.Models;
+﻿using Backend_Blaupause.Models;
+using Backend_Blaupause.Models.Entities;
+using Backend_Blaupause.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
@@ -20,15 +20,17 @@ namespace Backend_Blaupause.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IUser _user;
         private readonly JWTConfiguration _jwtConfiguration;
         private readonly ILogger<AuthenticationController> _logger;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Permission> _roleManager;
 
-        public AuthenticationController(IUser iUser, JWTConfiguration configuration, ILogger<AuthenticationController> logger)
+        public AuthenticationController(JWTConfiguration configuration, ILogger<AuthenticationController> logger, UserManager<User> userManager, RoleManager<Permission> roleManager)
         {
-            _user = iUser;
             _jwtConfiguration = configuration;
             _logger = logger;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -37,49 +39,39 @@ namespace Backend_Blaupause.Controllers
         /// <param name="credentials"></param>
         /// <returns>JWT Token</returns>
         [HttpPost]
+        [Route("login")]
         [ProducesResponseType(typeof(AccessToken), (int) HttpStatusCode.OK)]
-        public async Task<AccessToken> generateToken([FromBody] UserIdentity credentials)
+        public async Task<ActionResult<AccessToken>> Login([FromBody] LoginModel credentials)
         {
-            string password = SHA512Generator.generateSha512Hash(credentials.Password);
+            User user = await _userManager.FindByNameAsync(credentials.Login);
 
-            User user = await _user.getUserByName(credentials.Login);
+            var passwordValid = await _userManager.CheckPasswordAsync(user, credentials.Password);
 
-
-            if (user == null || user.password != password || user.username != credentials.Login)
+            if (user == null || !passwordValid)
             {
-                string username = user == null ? "unknown" : user.username;
+                string username = user == null ? "unknown" : user.UserName;
                 _logger.LogInformation("User: " + username + " has failed to login.");
-                Response.StatusCode = StatusCodes.Status401Unauthorized;
-                return new AccessToken { Success = false };
+                return Unauthorized();
             }
 
-            _logger.LogInformation("User: " + user.username + " has successully logged in.");
+            _logger.LogInformation("User: " + user.UserName + " has successully logged in.");
 
-            var claims = new List<Claim>()
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+            var authClaims = await GenerateClaims(user);
 
-            user.userPermissions.ToList().ForEach(up =>
-            {
-                claims.Add(new Claim(ClaimTypes.Role, up.permission.name));
-            });
-
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtConfiguration.SecretKey));
-            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfiguration.SecretKey));
+            SigningCredentials creds = new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256);
             DateTime expiredOn = DateTime.Now.AddSeconds(_jwtConfiguration.TokenExpirationTime);
 
             JwtSecurityToken token = new JwtSecurityToken(_jwtConfiguration.ValidIssuer,
                   _jwtConfiguration.ValidAudience,
-                  claims,
+                  authClaims,
                   expires: expiredOn,
                   signingCredentials: creds);
 
 
             string tokenHash = new JwtSecurityTokenHandler().WriteToken(token);
 
-            await _user.UpdateUserRecord(user);
+            await _userManager.UpdateSecurityStampAsync(user);
 
             return new AccessToken
             {
@@ -88,7 +80,73 @@ namespace Backend_Blaupause.Controllers
                 ExpiryIn = _jwtConfiguration.TokenExpirationTime,
                 Token = tokenHash
             };
-    }
+        }
+
+        [HttpPost]
+        [Route("register")]
+        public async Task<ActionResult<User>> Register([FromBody] RegisterModel model)
+        {
+            return await CreateUser(model);
+        }
+
+        [HttpPost]
+        [Route("register-admin")]
+        public async Task<ActionResult<User>> RegisterAdmin([FromBody] RegisterModel model)
+        {
+            var result = await CreateUser(model);
+
+            if (await _roleManager.RoleExistsAsync(IPermission.ADMINISTRATOR))
+            {
+                await _userManager.AddToRoleAsync(result.Value, IPermission.ADMINISTRATOR);
+            }
+
+            return result;
+        }
+
+        private async Task<ActionResult<User>> CreateUser(RegisterModel model)
+        {
+            var userExists = await _userManager.FindByNameAsync(model.Username);
+            if (userExists != null)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new { Status = "Error", Message = "User already exists!" });
+            }
+
+            User user = new User()
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.Username,
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+            } else
+            {
+                return StatusCode(StatusCodes.Status200OK, user);
+            }
+        }
+
+        private async Task<List<Claim>> GenerateClaims(User user)
+        {
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            var authClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+
+            foreach (var userRole in userRoles)
+            {
+                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+            }
+
+            return authClaims;
+        }
 
     }
 }

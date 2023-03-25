@@ -19,10 +19,10 @@ namespace Backend_Blaupause_Unit_Test
 
             User mockUser = new User();
             mockUser.id = 1;
-            mockUser.active = true;
-            mockUser.createdAt = DateTime.UtcNow;
-            mockUser.firstName = "";
-            mockUser.lastName = "";
+            mockUser.Active = true;
+            mockUser.CreatedAt = DateTime.UtcNow;
+            mockUser.FirstName = "";
+            mockUser.LastName = "";
             mockUser.password = "ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff"; //SHA512 Hash of 'test'
             mockUser.username = "user";
 
@@ -32,7 +32,7 @@ namespace Backend_Blaupause_Unit_Test
             jwtConfiguration.ValidIssuer = "6ba028366ebcdcef1ce3d73883c3475def4b7925f80e800bc82d91aa4430093622f9f95d20894022864dfa55d9c901ff520e070132eafabdae62a73e5ceeaed1";
             jwtConfiguration.ValidAudience = "6ba028366ebcdcef1ce3d73883c3475def4b7925f80e800bc82d91aa4430093622f9f95d20894022864dfa55d9c901ff520e070132eafabdae62a73e5ceeaed1";
 
-            UserIdentity mockUserIdentity = new UserIdentity();
+            LoginModel mockUserIdentity = new LoginModel();
             mockUserIdentity.Password = "test";
             mockUserIdentity.Login = "user";
 

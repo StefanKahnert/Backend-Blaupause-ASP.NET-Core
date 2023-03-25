@@ -1,8 +1,9 @@
 ﻿
 using Backend_Blaupause.Models.DatabaseMigration;
 using Backend_Blaupause.Models.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Data.Common;
 
 
@@ -11,38 +12,25 @@ namespace Backend_Blaupause.Models
     public class DatabaseContext : DbContext
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
-        public DbSet<User> user { get; set; }
+        public DbSet<User> User { get; set; }
        
-        public DbSet<Permission> permissions { get; set; }
+        public DbSet<Permission> Permission { get; set; }
 
-        public DbSet<DatabaseVersion> databaseVersion { get; set; }
+        public DbSet<DatabaseVersion> DatabaseVersion { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
-
-
-            builder.Entity<UserPermission>(entity =>
+            builder.Entity<IdentityUserRole<string>>(entity =>
             {
-                entity.HasKey(e => new { e.userId, e.permissionId }).HasName("pk_user_permission");
+                entity.HasKey(e => new { e.UserId, e.RoleId }).HasName("pk_user_permission");
 
                 entity.ToTable("user_permission");
 
-                entity.Property(e => e.userId).HasColumnName("id_user");
+                entity.Property(e => e.UserId).HasColumnName("id_user");
 
-                entity.Property(e => e.permissionId).HasColumnName("id_permission");
+                entity.Property(e => e.RoleId).HasColumnName("id_permission");
 
-                entity.HasOne(d => d.user)
-                    .WithMany(p => p.userPermissions)
-                    .HasForeignKey(d => d.userId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_user");
-
-                entity.HasOne(d => d.permission)
-                    .WithMany(p => p.userPermissions)
-                    .HasForeignKey(d => d.permissionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_permission");
             });
 
             builder.HasSequence("user_seq");

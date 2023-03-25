@@ -22,7 +22,7 @@ namespace Backend_Blaupause.Models.DatabaseMigration
 
             try
             {
-                db.databaseVersion.FirstOrDefault();
+                db.DatabaseVersion.FirstOrDefault();
                 exists = true;
             }
             catch
@@ -39,7 +39,7 @@ namespace Backend_Blaupause.Models.DatabaseMigration
 
             try
             {
-                dbVersion = db.databaseVersion.FirstOrDefault();
+                dbVersion = db.DatabaseVersion.FirstOrDefault();
             }
             catch
             {
@@ -64,7 +64,7 @@ namespace Backend_Blaupause.Models.DatabaseMigration
             
             dbVersion.version = DatabaseUpdates.getNewDbVersion();
 
-            db.databaseVersion.Add(dbVersion);
+            db.DatabaseVersion.Add(dbVersion);
 
             db.SaveChanges();
         }
