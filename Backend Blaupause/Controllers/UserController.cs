@@ -1,13 +1,11 @@
 ﻿using Backend_Blaupause.Helper;
 using Backend_Blaupause.Helper.Attributes;
-using Backend_Blaupause.Helper.ExceptionHandling;
 using Backend_Blaupause.Models;
 using Backend_Blaupause.Models.DTOs;
 using Backend_Blaupause.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -21,9 +19,9 @@ namespace Backend_Blaupause.Controllers
     {
         private readonly IUser _user;
 
-        public UserController(IUser userModel)
+        public UserController(IUser user)
         {
-            _user = userModel;
+            _user = user;
         }
 
         [HttpGet]

@@ -60,8 +60,6 @@ namespace Backend_Blaupause.Models
         [Column("modified_by")]
         public long? modifiedBy { get; set; }
 
-        public string token { get; set; }
-
         public virtual ICollection<UserPermission> userPermissions { get; set; }
 
     }

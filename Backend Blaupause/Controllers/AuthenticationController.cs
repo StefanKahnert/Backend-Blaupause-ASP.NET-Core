@@ -53,19 +53,6 @@ namespace Backend_Blaupause.Controllers
                 return new AccessToken { Success = false };
             }
 
-            if (!string.IsNullOrEmpty(user.token))
-            {
-				string tokenString = user.token.Replace("Bearer ", "");
-				JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
-				DateTime tokenExpiryDate = (handler.ReadToken(tokenString) as JwtSecurityToken).ValidTo;
-
-				//No Force Login and Token not expired
-				if (!credentials.forceLogin && tokenExpiryDate > DateTime.Now)
-				{
-					throw new HttpException(HttpStatusCode.Conflict, "There is already a login session!");
-				}
-			}
-
             _logger.LogInformation("User: " + user.username + " has successully logged in.");
 
             var claims = new List<Claim>()
@@ -91,8 +78,6 @@ namespace Backend_Blaupause.Controllers
 
 
             string tokenHash = new JwtSecurityTokenHandler().WriteToken(token);
-
-            user.token = "Bearer " + tokenHash;
 
             await _user.UpdateUserRecord(user);
 
