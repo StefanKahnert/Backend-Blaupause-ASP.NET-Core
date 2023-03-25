@@ -86,7 +86,15 @@ namespace Backend_Blaupause.Controllers
         [Route("register")]
         public async Task<ActionResult<User>> Register([FromBody] RegisterModel model)
         {
-            return await CreateUser(model);
+            var result = await CreateUser(model);
+
+            if (result == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+            } else
+            {
+                return Ok(result);
+            }
         }
 
         [HttpPost]
@@ -95,20 +103,25 @@ namespace Backend_Blaupause.Controllers
         {
             var result = await CreateUser(model);
 
+            if(result == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+            }
+
             if (await _roleManager.RoleExistsAsync(IPermission.ADMINISTRATOR))
             {
-                await _userManager.AddToRoleAsync(result.Value, IPermission.ADMINISTRATOR);
+                await _userManager.AddToRoleAsync(result, IPermission.ADMINISTRATOR);
             }
 
             return result;
         }
 
-        private async Task<ActionResult<User>> CreateUser(RegisterModel model)
+        private async Task<User> CreateUser(RegisterModel model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
             {
-                return StatusCode(StatusCodes.Status400BadRequest, new { Status = "Error", Message = "User already exists!" });
+                return null;
             }
 
             User user = new User()
@@ -123,10 +136,10 @@ namespace Backend_Blaupause.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+                return null;
             } else
             {
-                return StatusCode(StatusCodes.Status200OK, user);
+                return user;
             }
         }
 
