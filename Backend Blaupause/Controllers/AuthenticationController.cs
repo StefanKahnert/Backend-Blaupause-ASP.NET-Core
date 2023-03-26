@@ -83,6 +83,11 @@ namespace Backend_Blaupause.Controllers
             };
         }
 
+        /// <summary>
+        /// Create User
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("register")]
         public async Task<ActionResult<User>> Register([FromBody] RegisterModel model)
@@ -98,6 +103,11 @@ namespace Backend_Blaupause.Controllers
             }
         }
 
+        /// <summary>
+        /// Create Admin User
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("register-admin")]
         public async Task<ActionResult<User>> RegisterAdmin([FromBody] RegisterModel model)
