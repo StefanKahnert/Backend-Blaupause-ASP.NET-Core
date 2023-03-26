@@ -2,6 +2,7 @@
 
 
 - Benötigt PostgreSQL Datenbank mit Database: postgres, user: postgres, pw: postgres, port: 5432
+- Bei erstem Start: "dotnet ef migrations add InitialCreate" ausführen
 
 # enthält Lösungsansatz für wiederkehrende Probleme bei der Backend-Entwicklung wie: 
 - Authorisierung mit JWT
