@@ -1,6 +1,6 @@
-﻿using Backend_Blaupause.Models;
+﻿using Backend_Blaupause.Enums;
+using Backend_Blaupause.Models;
 using Backend_Blaupause.Models.Entities;
-using Backend_Blaupause.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Security;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -108,10 +109,12 @@ namespace Backend_Blaupause.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User creation failed! Please check user details and try again." });
             }
 
-            if (await _roleManager.RoleExistsAsync(IPermission.ADMINISTRATOR))
+            if (!await _roleManager.RoleExistsAsync(Role.ADMINISTRATOR.ToString()))
             {
-                await _userManager.AddToRoleAsync(result, IPermission.ADMINISTRATOR);
+                await _roleManager.CreateAsync(new Permission(Role.ADMINISTRATOR));
             }
+
+            await _userManager.AddToRoleAsync(result, Role.ADMINISTRATOR.ToString());
 
             return result;
         }

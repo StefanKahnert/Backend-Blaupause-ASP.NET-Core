@@ -1,8 +1,8 @@
-﻿using Backend_Blaupause.Helper;
+﻿using Backend_Blaupause.Enums;
+using Backend_Blaupause.Helper;
 using Backend_Blaupause.Helper.Attributes;
 using Backend_Blaupause.Models;
 using Backend_Blaupause.Models.DTOs;
-using Backend_Blaupause.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -39,7 +39,7 @@ namespace Backend_Blaupause.Controllers
         }
 
         [HttpGet]
-        [AuthorizeRoles(IPermission.USER, IPermission.ADMINISTRATOR)]
+        [AuthorizeRoles(Role.USER)]
         [ProducesResponseType(typeof(List<User>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<List<User>>> Get()
         {
@@ -47,7 +47,7 @@ namespace Backend_Blaupause.Controllers
         }
 
         [HttpPost]
-        [AuthorizeRoles(IPermission.ADMINISTRATOR)]
+        [AuthorizeRoles(Role.ADMINISTRATOR)]
         [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<User>> addUser(User user)
         {

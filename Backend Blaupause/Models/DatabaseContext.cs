@@ -1,6 +1,4 @@
-﻿
-using Backend_Blaupause.Models.DatabaseMigration;
-using Backend_Blaupause.Models.Entities;
+﻿using Backend_Blaupause.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,8 +13,6 @@ namespace Backend_Blaupause.Models
         public DbSet<User> User { get; set; }
        
         public DbSet<Permission> Permission { get; set; }
-
-        public DbSet<DatabaseVersion> DatabaseVersion { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

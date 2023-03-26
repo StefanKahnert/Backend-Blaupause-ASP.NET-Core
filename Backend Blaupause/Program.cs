@@ -1,7 +1,6 @@
 using Backend_Blaupause.Helper;
 using Backend_Blaupause.Helper.ExceptionHandling;
 using Backend_Blaupause.Helper.Schedule;
-using Backend_Blaupause.Models.DatabaseMigration;
 using Backend_Blaupause.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -43,8 +42,6 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddTransient<IUser, UserImpl>();
 
-builder.Services.AddTransient<DatabaseMigrationService>();
-
 builder.Services.AddTransient<ScheduleJobs>();
 
 builder.Services.AddTransient((config) =>
@@ -81,6 +78,9 @@ builder.Services.AddSignalR();
 
 builder.Logging.AddFile("Logs/Backend-{Date}.txt");
 
+var dbContext = builder.Services.BuildServiceProvider().GetService<DatabaseContext>();
+dbContext.Database.Migrate();
+
 var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
@@ -104,14 +104,6 @@ app.UseAuthorization();
 app.UseMiddleware(typeof(ExceptionHandler));
 
 app.MapControllers();
-
-
-var databasemigrationService = builder.Services.BuildServiceProvider().GetService<DatabaseMigrationService>();
-
-if (databasemigrationService.dbVersionTableExists())
-{
-    databasemigrationService.updateDatabaseToCurrentVersion();
-}
 
 app.Run();
 
