@@ -1,10 +1,11 @@
-﻿using Backend_Blaupause.Helper.ExceptionHandling;
+﻿using Backend_Blaupause.Enums;
+using Backend_Blaupause.Helper.ExceptionHandling;
 using Backend_Blaupause.Helper.Factories;
 using Backend_Blaupause.Models.DTOs;
+using Backend_Blaupause.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,13 +17,15 @@ namespace Backend_Blaupause.Models
     {
         private readonly DatabaseContext _db;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Permission> _roleManager;
         private readonly ILogger<UserImpl> _logger;
 
-        public UserImpl(DatabaseContext context, UserManager<User> userManager, ILogger<UserImpl> logger)
+        public UserImpl(DatabaseContext context, UserManager<User> userManager, ILogger<UserImpl> logger, RoleManager<Permission> roleManager)
         {
             _db = context;
             _userManager = userManager;
             _logger = logger;
+            _roleManager = roleManager;
         }
 
         public async Task DeleteUserRecord(string id)
@@ -32,19 +35,19 @@ namespace Backend_Blaupause.Models
             await _db.SaveChangesAsync();
         }
 
-        public async Task<List<User>> GetUserRecords()
+        public async Task<List<User>> GetAllUsersAsync()
         {
             var result = await _db.User.AsNoTracking().ToListAsync();
 
             if(result == null || !result.Any())
             {
-                throw new HttpException(HttpStatusCode.NotFound);
+                throw new HttpException(HttpStatusCode.NoContent);
             }
 
             return await _db.User.ToListAsync();
         }
 
-        public async Task<UserDTO> getUserDTO(string id)
+        public async Task<UserDTO> GetUserDTOByIdAsync(string id)
         {
             var userDTO = from u in _db.User.AsNoTracking()
                           where u.Id == id
@@ -57,7 +60,7 @@ namespace Backend_Blaupause.Models
             return await userDTO.FirstOrDefaultAsync();
         }
 
-        public async Task CreateFakeUsers(int numberOfUsers)
+        public async Task CreateFakeUsersAsync(int numberOfUsers)
         {
             var fakeUsers = UserFactory.GenerateUsers(numberOfUsers);
 
@@ -74,6 +77,23 @@ namespace Backend_Blaupause.Models
                 {
                     _logger.LogError($"Creation of User: {fakeUser.UserName} failed!");
                 }
+            }
+        }
+
+        public async Task AddRoleToUserAsync(string userId, Role role)
+        {
+            if(!(await _roleManager.RoleExistsAsync(role.ToString())))
+            {
+                await _roleManager.CreateAsync(new Permission(role));
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            var result = await _userManager.AddToRoleAsync(user, role.ToString());
+
+            if (!result.Succeeded)
+            {
+                throw new HttpException(HttpStatusCode.InternalServerError, $"Failed to add Role: {role} to User: {userId}");
             }
         }
     }

@@ -21,11 +21,6 @@ namespace Backend_Blaupause.Models
                 entity.HasKey(e => new { e.UserId, e.RoleId }).HasName("pk_user_role");
 
                 entity.ToTable("UserRole");
-
-                entity.Property(e => e.UserId).HasColumnName("UserId");
-
-                entity.Property(e => e.RoleId).HasColumnName("RoleId");
-
             });
 
             builder.HasSequence("user_seq");

@@ -31,25 +31,25 @@ namespace Backend_Blaupause.Controllers
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(typeof(User), (int) HttpStatusCode.OK)]
-        public async Task<ActionResult<User>> getUserById(string id)
+        public async Task<ActionResult<User>> GetUserByIdAsync(string id)
         {
             return Ok(await _userManager.FindByIdAsync(id));
         }
 
         [HttpGet]
-        [AuthorizeRoles(Role.USER)]
+        [AuthorizeRoles(Role.ADMINISTRATOR)]
         [ProducesResponseType(typeof(List<User>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<List<User>>> Get()
+        public async Task<ActionResult<List<User>>> GetAllAsync()
         {
-            return Ok(await _user.GetUserRecords());
+            return Ok(await _user.GetAllUsersAsync());
         }
 
         [HttpGet]
         [Route("dto/{id}"), APILog]
         [ProducesResponseType(typeof(UserDTO), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UserDTO>> getUserDTO(string id)
+        public async Task<ActionResult<UserDTO>> GetUserDtoByIdAsync(string id)
         {
-            return await _user.getUserDTO(id);
+            return await _user.GetUserDTOByIdAsync(id);
         }
 
         [HttpGet]
@@ -65,11 +65,21 @@ namespace Backend_Blaupause.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("fake/{number}"), APILog]
-        public async Task<ActionResult> getUserDTO(int number)
+        public async Task<ActionResult> CreateFakeUsersAsync(int number)
         {
-            await _user.CreateFakeUsers(number);
+            await _user.CreateFakeUsersAsync(number);
 
             return Ok($"{number} Users created");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("{userId}/role/{role}")]
+        public async Task<ActionResult> AddRoleToUserAsync(string userId, Role role)
+        {
+            await _user.AddRoleToUserAsync(userId, role);
+
+            return Ok($"Role has been given to user");
         }
     }
 }
