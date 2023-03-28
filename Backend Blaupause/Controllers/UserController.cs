@@ -4,6 +4,7 @@ using Backend_Blaupause.Helper.Attributes;
 using Backend_Blaupause.Models;
 using Backend_Blaupause.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,23 +20,20 @@ namespace Backend_Blaupause.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUser _user;
+        private readonly UserManager<User> _userManager;
 
-        public UserController(IUser user)
+        public UserController(IUser user, UserManager<User> userManager)
         {
             _user = user;
+            _userManager = userManager;
         }
 
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("{id}")]
         [ProducesResponseType(typeof(User), (int) HttpStatusCode.OK)]
         public async Task<ActionResult<User>> getUserById(string id)
         {
-            if(Int64.Parse(id) <= 0)
-            {
-                return BadRequest($"{nameof(id)} must be equal or larger than 0");
-            }
-
-            return Ok(await _user.GetUserSingleRecord(id));
+            return Ok(await _userManager.FindByIdAsync(id));
         }
 
         [HttpGet]
@@ -46,20 +44,32 @@ namespace Backend_Blaupause.Controllers
             return Ok(await _user.GetUserRecords());
         }
 
-        [HttpPost]
-        [AuthorizeRoles(Role.ADMINISTRATOR)]
-        [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<User>> addUser(User user)
-        {
-            return Ok(await _user.AddUserRecord(user));
-        }
-
         [HttpGet]
-        [Route("dto/{id:int}"), APILog]
+        [Route("dto/{id}"), APILog]
         [ProducesResponseType(typeof(UserDTO), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<UserDTO>> getUserDTO(string id)
         {
             return await _user.getUserDTO(id);
+        }
+
+        [HttpGet]
+        [Route("me"), APILog]
+        [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<User>> GetMyUserDataAsync()
+        {
+            var userName = HttpContext.User?.Identity?.Name;
+
+            return Ok(await _userManager.FindByNameAsync(userName));
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("fake/{number}"), APILog]
+        public async Task<ActionResult> getUserDTO(int number)
+        {
+            await _user.CreateFakeUsers(number);
+
+            return Ok($"{number} Users created");
         }
     }
 }

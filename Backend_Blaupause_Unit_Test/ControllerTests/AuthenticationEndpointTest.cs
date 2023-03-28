@@ -1,6 +1,7 @@
 using Backend_Blaupause.Controllers;
 using Backend_Blaupause.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -53,7 +54,7 @@ namespace Backend_Blaupause_Unit_Test
                 }
             };
 
-            AccessToken token = await authenticationEndpoint.generateToken(mockUserIdentity);
+            AccessToken token = (await authenticationEndpoint.Login(mockUserIdentity)).Value;
 
             //3. Check if result is correct
             Assert.AreEqual(token.Success, true);

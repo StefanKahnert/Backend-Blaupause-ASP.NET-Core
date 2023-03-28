@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend_Blaupause.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230326093131_InitialCreate")]
+    [Migration("20230328155654_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,19 +25,6 @@ namespace Backend_Blaupause.Migrations
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.HasSequence("user_seq");
-
-            modelBuilder.Entity("Backend_Blaupause.Models.DatabaseMigration.DatabaseVersion", b =>
-                {
-                    b.Property<long>("version")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("version"));
-
-                    b.HasKey("version");
-
-                    b.ToTable("database_version");
-                });
 
             modelBuilder.Entity("Backend_Blaupause.Models.Entities.Permission", b =>
                 {
@@ -160,20 +147,20 @@ namespace Backend_Blaupause.Migrations
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("text")
-                        .HasColumnName("id_user");
+                        .HasColumnName("UserId");
 
                     b.Property<string>("RoleId")
                         .HasColumnType("text")
-                        .HasColumnName("id_permission");
+                        .HasColumnName("RoleId");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("UserId", "RoleId")
-                        .HasName("pk_user_permission");
+                        .HasName("pk_user_role");
 
-                    b.ToTable("user_permission", (string)null);
+                    b.ToTable("UserRole", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<string>");
                 });
@@ -198,7 +185,7 @@ namespace Backend_Blaupause.Migrations
             modelBuilder.Entity("Backend_Blaupause.Models.Entities.UserPermission", b =>
                 {
                     b.HasOne("Backend_Blaupause.Models.Entities.Permission", "Permission")
-                        .WithMany("userPermissions")
+                        .WithMany("UserPermissions")
                         .HasForeignKey("PermissionId");
 
                     b.HasOne("Backend_Blaupause.Models.User", "User")
@@ -212,7 +199,7 @@ namespace Backend_Blaupause.Migrations
 
             modelBuilder.Entity("Backend_Blaupause.Models.Entities.Permission", b =>
                 {
-                    b.Navigation("userPermissions");
+                    b.Navigation("UserPermissions");
                 });
 
             modelBuilder.Entity("Backend_Blaupause.Models.User", b =>

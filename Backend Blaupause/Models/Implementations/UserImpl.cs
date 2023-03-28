@@ -1,6 +1,10 @@
 ﻿using Backend_Blaupause.Helper.ExceptionHandling;
+using Backend_Blaupause.Helper.Factories;
 using Backend_Blaupause.Models.DTOs;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,25 +15,14 @@ namespace Backend_Blaupause.Models
     public class UserImpl : IUser
     {
         private readonly DatabaseContext _db;
+        private readonly UserManager<User> _userManager;
+        private readonly ILogger<UserImpl> _logger;
 
-        public UserImpl(DatabaseContext context)
+        public UserImpl(DatabaseContext context, UserManager<User> userManager, ILogger<UserImpl> logger)
         {
             _db = context;
-        }
-
-        public async Task<User> AddUserRecord(User user)
-        {
-            user.Id = _db.getNextUserId().ToString();
-            await _db.User.AddAsync(user);
-            await _db.SaveChangesAsync();
-
-            return user;
-        }
-
-        public async Task UpdateUserRecord(User User)
-        {
-            _db.User.Update(User);
-            await _db.SaveChangesAsync();
+            _userManager = userManager;
+            _logger = logger;
         }
 
         public async Task DeleteUserRecord(string id)
@@ -39,18 +32,13 @@ namespace Backend_Blaupause.Models
             await _db.SaveChangesAsync();
         }
 
-        public async Task<User> GetUserSingleRecord(string id)
-        {
-            return await _db.User.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
-        }
-
         public async Task<List<User>> GetUserRecords()
         {
             var result = await _db.User.AsNoTracking().ToListAsync();
 
             if(result == null || !result.Any())
             {
-                throw new HttpException(HttpStatusCode.NoContent);
+                throw new HttpException(HttpStatusCode.NotFound);
             }
 
             return await _db.User.ToListAsync();
@@ -69,10 +57,24 @@ namespace Backend_Blaupause.Models
             return await userDTO.FirstOrDefaultAsync();
         }
 
-        public async Task<User> getUserByName(string name)
+        public async Task CreateFakeUsers(int numberOfUsers)
         {
-            return await _db.User.AsNoTracking().Include(u => u.UserPermissions).ThenInclude(ur => ur.Permission).FirstOrDefaultAsync(t => t.UserName == name);
-        }
+            var fakeUsers = UserFactory.GenerateUsers(numberOfUsers);
 
+            foreach(var fakeUser in fakeUsers)
+            {
+                var userExists = await _userManager.FindByNameAsync(fakeUser.UserName);
+                if (userExists != null)
+                {
+                    continue;
+                }
+
+                var result = await _userManager.CreateAsync(fakeUser, "1234ABDsds@");
+                if (!result.Succeeded)
+                {
+                    _logger.LogError($"Creation of User: {fakeUser.UserName} failed!");
+                }
+            }
+        }
     }
 }

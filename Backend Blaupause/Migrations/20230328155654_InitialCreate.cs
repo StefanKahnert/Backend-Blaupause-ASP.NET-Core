@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -12,18 +11,6 @@ namespace Backend_Blaupause.Migrations
         {
             migrationBuilder.CreateSequence(
                 name: "user_seq");
-
-            migrationBuilder.CreateTable(
-                name: "database_version",
-                columns: table => new
-                {
-                    version = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_database_version", x => x.version);
-                });
 
             migrationBuilder.CreateTable(
                 name: "Permission",
@@ -76,48 +63,45 @@ namespace Backend_Blaupause.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "user_permission",
+                name: "UserRole",
                 columns: table => new
                 {
-                    id_user = table.Column<string>(type: "text", nullable: false),
-                    id_permission = table.Column<string>(type: "text", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    RoleId = table.Column<string>(type: "text", nullable: false),
                     Discriminator = table.Column<string>(type: "text", nullable: false),
                     UserId1 = table.Column<string>(type: "text", nullable: true),
                     PermissionId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_user_permission", x => new { x.id_user, x.id_permission });
+                    table.PrimaryKey("pk_user_role", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_user_permission_Permission_PermissionId",
+                        name: "FK_UserRole_Permission_PermissionId",
                         column: x => x.PermissionId,
                         principalTable: "Permission",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_user_permission_User_UserId1",
+                        name: "FK_UserRole_User_UserId1",
                         column: x => x.UserId1,
                         principalTable: "User",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_user_permission_PermissionId",
-                table: "user_permission",
+                name: "IX_UserRole_PermissionId",
+                table: "UserRole",
                 column: "PermissionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_user_permission_UserId1",
-                table: "user_permission",
+                name: "IX_UserRole_UserId1",
+                table: "UserRole",
                 column: "UserId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "database_version");
-
-            migrationBuilder.DropTable(
-                name: "user_permission");
+                name: "UserRole");
 
             migrationBuilder.DropTable(
                 name: "Permission");

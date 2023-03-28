@@ -1,7 +1,6 @@
 ﻿using Backend_Blaupause.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Data.Common;
 
 
@@ -19,13 +18,13 @@ namespace Backend_Blaupause.Models
 
             builder.Entity<IdentityUserRole<string>>(entity =>
             {
-                entity.HasKey(e => new { e.UserId, e.RoleId }).HasName("pk_user_permission");
+                entity.HasKey(e => new { e.UserId, e.RoleId }).HasName("pk_user_role");
 
-                entity.ToTable("user_permission");
+                entity.ToTable("UserRole");
 
-                entity.Property(e => e.UserId).HasColumnName("id_user");
+                entity.Property(e => e.UserId).HasColumnName("UserId");
 
-                entity.Property(e => e.RoleId).HasColumnName("id_permission");
+                entity.Property(e => e.RoleId).HasColumnName("RoleId");
 
             });
 
