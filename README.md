@@ -13,4 +13,4 @@
 - Unit Tests mit Mocking
 - Attribut zur Überprüfung der Berechtigungen
 - Schedule Backend Jobs
-- Automatische E-Mail generierung
+- Fakedaten Generierung mit Bogus
