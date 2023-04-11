@@ -11,6 +11,5 @@
 - Database Migration
 - Verwendung eines Entity Frameworks und ASP.NET Core 
 - Unit Tests mit Mocking
-- Attribut zur Überprüfung der Berechtigungen
 - Schedule Backend Jobs
 - Fakedaten Generierung mit Bogus
