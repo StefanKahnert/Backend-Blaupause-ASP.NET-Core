@@ -22,6 +22,8 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Backend_Blaupause.Models.Entities;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Backend_Blaupause.Helper.GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +56,10 @@ builder.Services.AddTransient((config) =>
 builder.Services.AddIdentity<User, Permission>()
             .AddEntityFrameworkStores<DatabaseContext>()
             .AddDefaultTokenProviders();
+
+builder.Services
+    .AddGraphQLServer()
+    .AddQueryType<GraphQLQuery>();
 
 
 builder.Services.AddResponseCaching();
@@ -104,6 +110,7 @@ app.UseAuthorization();
 app.UseMiddleware(typeof(ExceptionHandler));
 
 app.MapControllers();
+app.MapGraphQL();
 
 app.Run();
 
