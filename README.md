@@ -7,7 +7,7 @@
 # enthält Lösungsansatz für wiederkehrende Probleme bei der Backend-Entwicklung wie: 
 - Authorisierung mit JWT
 - Logging der API-Zugriffe via Attribut
-- Exception-Handling mit Custom Exception
+- Exception-Handling mit Middleware
 - Database Migration
 - Verwendung eines Entity Frameworks und ASP.NET Core 
 - Unit Tests mit Mocking
