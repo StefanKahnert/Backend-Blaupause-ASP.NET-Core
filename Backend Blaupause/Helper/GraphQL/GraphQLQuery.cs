@@ -7,6 +7,6 @@ namespace Backend_Blaupause.Helper.GraphQL
 {
     public class GraphQLQuery
     {
-        public async Task<List<User>> GetUsers([Service] IUser user) => await user.GetAllUsersAsync();
+        public async Task<List<User>> GetUsers([Service] IUser user, int pageNumber, int pageSize) => await user.GetAllUsersAsync(pageNumber, pageSize);
     }
 }

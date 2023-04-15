@@ -8,7 +8,7 @@ namespace Backend_Blaupause.Models
     public interface IUser
     {
         public const string NONE = "none";
-        Task<List<User>> GetAllUsersAsync();
+        Task<List<User>> GetAllUsersAsync(int pageNumber, int pageSize);
         Task<UserDTO> GetUserDTOByIdAsync(string id);
         Task CreateFakeUsersAsync(int numberOfUsers);
         Task AddRoleToUserAsync(string userId, Role role);

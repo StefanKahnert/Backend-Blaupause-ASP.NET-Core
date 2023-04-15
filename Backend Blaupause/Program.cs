@@ -22,12 +22,16 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Backend_Blaupause.Models.Entities;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Backend_Blaupause.Helper.GraphQL;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors();
+
+//Configure JSON Parser
 builder.Services.AddControllers(setupAction =>
     setupAction.ReturnHttpNotAcceptable = true
    ).AddNewtonsoftJson(setupAction => {
@@ -37,43 +41,72 @@ builder.Services.AddControllers(setupAction =>
    }
 ); builder.Configuration.GetValue<string>("DefaultConnection");
 
+//Configure DB Connection
 var sqlConnectionString = builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
-
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(sqlConnectionString));
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+//Configure Services
 builder.Services.AddTransient<IUser, UserImpl>();
-
 builder.Services.AddTransient<ScheduleJobs>();
 
+//Configure Auth
 builder.Services.AddTransient((config) =>
 {
     var conf = new JWTConfiguration();
     builder.Configuration.GetSection("JWTConfiguration").Bind(conf);
     return conf;
 });
-
 builder.Services.AddIdentity<User, Permission>()
             .AddEntityFrameworkStores<DatabaseContext>()
             .AddDefaultTokenProviders();
 
+//Configure GraphQL Endpoint
 builder.Services
     .AddGraphQLServer()
-    .AddQueryType<GraphQLQuery>();
+    .AddQueryType<GraphQLQuery>()
+    .AddProjections()
+    .AddFiltering()
+    .AddSorting();
 
+//Configure API Versioning
+builder.Services.AddApiVersioning(opt =>
+{
+    opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(2, 0);
+    opt.AssumeDefaultVersionWhenUnspecified = true;
+    opt.ReportApiVersions = true;
+    opt.ApiVersionReader = new HeaderApiVersionReader("api-version");
+    opt.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
+                                                    new HeaderApiVersionReader("x-api-version"),
+                                                    new MediaTypeApiVersionReader("x-api-version"));
+});
 
+builder.Services.AddVersionedApiExplorer(setup =>
+{
+    setup.GroupNameFormat = "'v'VVV";
+    setup.SubstituteApiVersionInUrl = true;
+});
+
+//Configure Caching
+builder.Services.AddMemoryCache();
 builder.Services.AddResponseCaching();
 
+//Configure Endpoint Documentation
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
+    var apiVersionDescriptionProvider = builder.Services.BuildServiceProvider().GetService<IApiVersionDescriptionProvider>();
+    apiVersionDescriptionProvider.ApiVersionDescriptions.ToList().ForEach(description =>
     {
-        Title = "Backend Blaupause",
-        Description = "Blaupause um schnell .NET backend aufzubauen",
-        Version = "v1"
+        c.SwaggerDoc(description.GroupName, new OpenApiInfo
+        {
+            Title = "ASP.NET Core",
+            Description = "Best Practice",
+            Version = description.GroupName
+        });
     });
     // Use method name as operationId
     c.CustomOperationIds(apiDesc => { return apiDesc.TryGetMethodInfo(out var methodInfo) ? methodInfo.Name : null; });
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
+    $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
 });
 
 ConfigureJwt(builder.Services);
@@ -89,11 +122,19 @@ dbContext.Database.Migrate();
 
 var app = builder.Build();
 
+var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 if (builder.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        apiVersionDescriptionProvider.ApiVersionDescriptions.Reverse().ToList().ForEach(description =>
+        {
+            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                description.GroupName.ToUpperInvariant());
+        });
+    });
 }
 
 app.UseCors(options => options.WithOrigins("*").AllowAnyMethod());

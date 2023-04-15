@@ -35,16 +35,16 @@ namespace Backend_Blaupause.Models
             await _db.SaveChangesAsync();
         }
 
-        public async Task<List<User>> GetAllUsersAsync()
+        public async Task<List<User>> GetAllUsersAsync(int pageNumber, int pageSize)
         {
-            var result = await _db.User.AsNoTracking().ToListAsync();
+            var result = await _db.User.Skip(pageNumber * pageSize).Take(pageSize).ToListAsync();
 
-            if(result == null || !result.Any())
+            if (result == null || !result.Any())
             {
                 throw new HttpException(HttpStatusCode.NoContent);
             }
 
-            return await _db.User.ToListAsync();
+            return result;
         }
 
         public async Task<UserDTO> GetUserDTOByIdAsync(string id)

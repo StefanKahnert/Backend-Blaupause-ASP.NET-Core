@@ -16,8 +16,10 @@ using System.Threading.Tasks;
 
 namespace Backend_Blaupause.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class AuthenticationController : ControllerBase
     {
         private readonly JWTConfiguration _jwtConfiguration;
