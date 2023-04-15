@@ -26,6 +26,7 @@ using Backend_Blaupause.Helper.GraphQL;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using System.IO;
+using Backend_Blaupause.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +49,7 @@ builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(sqlC
 //Configure Services
 builder.Services.AddTransient<IUser, UserImpl>();
 builder.Services.AddTransient<ScheduleJobs>();
+builder.Services.AddTransient<NotificationHub>();
 
 //Configure Auth
 builder.Services.AddTransient((config) =>
@@ -152,6 +154,7 @@ app.UseMiddleware(typeof(ExceptionHandler));
 
 app.MapControllers();
 app.MapGraphQL();
+app.MapHub<NotificationHub>("/Notifications");
 
 app.Run();
 
