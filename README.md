@@ -12,4 +12,6 @@
 - Verwendung eines Entity Frameworks und ASP.NET Core 
 - Unit Tests mit Mocking
 - Schedule Backend Jobs
+- Rest Endpoint mit Swagger-Dokumentation
+- GraphQL Endpoint mit Dokumentation
 - Fakedaten Generierung mit Bogus
